@@ -1,0 +1,24 @@
+{
+  "canonical_base": "https://danilka88.github.io/eink-planner",
+  "language": "ru",
+  "currency": "RUB",
+  "crawler_policy": "allow-search",
+  "ga4": null,
+  "gtm": null,
+  "metrica": null,
+  "google_site_verification": null,
+  "yandex_verification": null,
+  "bing_verification": null,
+  "indexnow_key": "f3773c4d10cc90c15cb2aa4f09fb4292",
+  "organization": {
+    "name": "РИТУАЛ",
+    "url": "https://github.com/Danilka88/eink-planner",
+    "logo": null,
+    "telephone": null,
+    "email": null,
+    "address": null,
+    "sameAs": [
+      "https://github.com/Danilka88/eink-planner"
+    ]
+  }
+}

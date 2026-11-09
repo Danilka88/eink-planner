@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="ru" data-theme="light" data-dg-kind="public">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; manifest-src 'self'; worker-src 'self'">
+<title>Ритуал — план привычек для e-ink</title>
+<meta name="description" content="Локальный офлайн-планер привычек для e-ink планшета: крупная сетка, отметки одним касанием, просрочки видны, данные не покидают устройство.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Danilka88">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121212">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="format-detection" content="telephone=no">
+
+<link rel="canonical" href="https://danilka88.github.io/eink-planner/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ритуал">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="Ритуал — офлайн-планер привычек для e-ink">
+<meta property="og:description" content="Крупные плитки, отметка одним касанием, просрочка не исчезает. Работает без сети, данные остаются на устройстве.">
+<meta property="og:url" content="https://danilka88.github.io/eink-planner/">
+<meta property="og:image" content="https://danilka88.github.io/eink-planner/icons/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Сетка крупных плиток планера на экране e-ink">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ритуал — офлайн-планер привычек для e-ink">
+<meta name="twitter:description" content="Крупные плитки, отметка одним касанием, просрочка не исчезает. Работает без сети, данные остаются на устройстве.">
+<meta name="twitter:image" content="https://danilka88.github.io/eink-planner/icons/og.png">
+
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="styles.css">
+<script src="js/theme-boot.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Ритуал",
+  "alternateName": "Ritual",
+  "url": "https://danilka88.github.io/eink-planner/",
+  "description": "Локальный офлайн-планер привычек для e-ink планшета: крупные плитки, отметки одним касанием, просрочки остаются на экране. Данные не покидают устройство.",
+  "applicationCategory": "ProductivityApplication",
+  "operatingSystem": "Android, ChromeOS, Linux, macOS, Windows",
+  "inLanguage": ["ru", "en"],
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "RUB"
+  },
+  "screenshot": "https://danilka88.github.io/eink-planner/icons/og.png",
+  "license": "https://github.com/Danilka88/eink-planner/blob/main/LICENSE",
+  "codeRepository": "https://github.com/Danilka88/eink-planner"
+}
+</script>
+</head>
+<body data-dg-screen="SCR-HABIT-01">
+<h1 class="sr-only">Ритуал — план привычек на день</h1>
+
+<div class="app">
+  <header class="top" data-dg-component="CMP-TOOLBAR-01">
+    <div class="today">
+      <span class="weekday" id="weekday">пн</span>
+      <span class="date" id="date">10 ноября</span>
+    </div>
+    <div class="progress" id="progressWrap" data-dg-component="CMP-DAY-BAR-01"
+         role="progressbar" data-i18n-aria="board.progress" aria-label="Выполнено за сегодня"
+         aria-valuemin="0" aria-valuemax="0" aria-valuenow="0">
+      <span class="progress-text" id="progressText">0/0</span>
+      <span class="segments" id="segments" aria-hidden="true"></span>
+    </div>
+    <div class="clockbox">
+      <span class="clock" id="clock">--:--</span>
+      <span class="net-chip" id="netChip" data-dg-component="CMP-ALERT-01" data-dg-state="offline" hidden>локально</span>
+    </div>
+  </header>
+
+  <main class="board-wrap">
+    <div class="board" id="board" data-i18n-aria="ui.habits" aria-label="Привычки, которые ждут отметки"></div>
+
+    <div class="empty" id="empty" data-dg-component="CMP-EMPTY-01" data-dg-state="empty" hidden>
+      <p class="empty-kicker" id="emptyKicker">Сейчас</p>
+      <p class="empty-title" id="emptyTitle">Всё отмечено</p>
+      <p class="empty-next" id="emptyNext"></p>
+      <button class="btn btn-ghost" type="button" data-action="all" data-analytics="nav.all">Все привычки</button>
+    </div>
+  </main>
+
+  <div class="toast" id="toast" data-dg-component="CMP-TOAST-01" role="status" aria-live="polite" hidden>
+    <span id="toastText"></span>
+    <button class="toast-undo" id="toastUndo" type="button" hidden>Отменить</button>
+  </div>
+
+  <footer class="dock" data-dg-component="CMP-TOOLBAR-01">
+    <button class="dock-btn" type="button" data-action="add" data-analytics="nav.add">
+      <svg class="ic" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg>
+      <span data-i18n="ui.add">Добавить</span>
+    </button>
+    <button class="dock-btn" type="button" data-action="all" data-analytics="nav.all">
+      <svg class="ic" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="#i-list"></use></svg>
+      <span data-i18n="ui.all">Все</span>
+    </button>
+    <button class="dock-btn" type="button" data-action="refresh" data-analytics="screen.refresh">
+      <svg class="ic" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="#i-refresh"></use></svg>
+      <span data-i18n="ui.refresh">Обновить</span>
+    </button>
+    <button class="dock-btn" type="button" data-action="settings" data-analytics="nav.settings">
+      <svg class="ic" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="#i-settings"></use></svg>
+      <span data-i18n="ui.settings">Настройки</span>
+    </button>
+  </footer>
+</div>
+
+<dialog class="panel" id="panel" aria-labelledby="panelTitle">
+  <header class="panel-head">
+    <h2 id="panelTitle" data-i18n="ui.habits">Все привычки</h2>
+    <button class="iconbtn" type="button" data-close data-i18n-aria="ui.close" aria-label="Закрыть" data-analytics="panel.close">
+      <svg class="ic" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="#i-close"></use></svg>
+    </button>
+  </header>
+  <div class="panel-body" id="panelBody"></div>
+</dialog>
+
+<div class="flash" id="flash" aria-hidden="true" hidden></div>
+
+<template id="tpl-tile">
+  <button class="tile" type="button" data-dg-component="CMP-HABIT-TILE-01" data-analytics="habit.toggle"
+          data-state="pending" aria-pressed="false">
+    <span class="tile-icon" aria-hidden="true"></span>
+    <span class="tile-title"></span>
+    <span class="tile-meta"></span>
+    <span class="tile-flag" aria-hidden="true">!</span>
+    <svg class="tile-check" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg>
+  </button>
+</template>
+
+<template id="tpl-editor">
+  <form class="editor" id="habitForm" data-dg-component="CMP-HABIT-EDITOR-01" novalidate>
+    <div class="field">
+      <label for="fTitle" data-i18n="ed.name">Название</label>
+      <input id="fTitle" name="title" type="text" maxlength="40" autocomplete="off" required>
+      <p class="err" id="fTitleErr" data-i18n="ed.errName" hidden>Введите название</p>
+    </div>
+
+    <fieldset class="field">
+      <legend data-i18n="ed.icon">Иконка</legend>
+      <div class="icons" id="fIcons" role="group" aria-label="Иконка привычки"></div>
+    </fieldset>
+
+    <div class="row2">
+      <div class="field">
+        <label for="fStart" data-i18n="ed.appears">Появляется</label>
+        <input id="fStart" name="start" type="time" value="07:00" required>
+      </div>
+      <div class="field">
+        <label for="fEnd" data-i18n="ed.hides">Скрывается</label>
+        <input id="fEnd" name="end" type="time" value="10:00" required>
+      </div>
+    </div>
+
+    <fieldset class="field">
+      <legend data-i18n="ed.repeat">Повтор</legend>
+      <div class="segmented four" id="fRepeat">
+        <button type="button" data-repeat="daily" aria-pressed="true" data-i18n="ed.daily">Каждый день</button>
+        <button type="button" data-repeat="weekly" aria-pressed="false" data-i18n="ed.weekly">По дням</button>
+        <button type="button" data-repeat="monthly" aria-pressed="false" data-i18n="ed.monthly">Каждое число</button>
+        <button type="button" data-repeat="once" aria-pressed="false" data-i18n="ed.once">Разово</button>
+      </div>
+    </fieldset>
+
+    <fieldset class="field" id="fDaysField" hidden>
+      <legend data-i18n="ed.days">Дни недели</legend>
+      <div class="days" id="fDays"></div>
+    </fieldset>
+
+    <div class="field" id="fMonthField" hidden>
+      <label for="fMonthDay" data-i18n="ed.monthDay">Число месяца</label>
+      <input id="fMonthDay" name="monthDay" type="number" min="1" max="31" step="1" value="1" inputmode="numeric">
+    </div>
+
+    <div class="field" id="fDateField" hidden>
+      <label for="fDate" data-i18n="ed.date">Дата</label>
+      <input id="fDate" name="date" type="date">
+    </div>
+
+    <label class="checkrow">
+      <input type="checkbox" id="fKeep" checked>
+      <span data-i18n="ed.keep">Не убирать с экрана, пока не выполнено</span>
+    </label>
+
+    <p class="err" id="fErr" role="alert" hidden></p>
+
+    <div class="editor-actions">
+      <button type="button" class="btn btn-ghost" data-close data-i18n="ui.cancel">Отмена</button>
+      <button type="submit" class="btn btn-primary" data-dg-component="CMP-BTN-01" data-analytics="habit.save" data-i18n="ui.save">Сохранить</button>
+    </div>
+    <div class="editor-actions">
+      <button type="button" class="btn btn-ghost" id="fClone" data-i18n="ed.duplicate" hidden>Дублировать</button>
+      <button type="button" class="btn btn-danger" id="fDelete" data-i18n="ed.toArchive" hidden>В архив</button>
+    </div>
+  </form>
+</template>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

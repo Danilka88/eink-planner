@@ -1,0 +1,4641 @@
+{
+  "schema": "design-contract/1",
+  "toolVersion": "1.2.0",
+  "tokens": {
+    "light": {
+      "color.surface": "#ffffff",
+      "color.surface.muted": "#ededed",
+      "color.text": "#000000",
+      "color.text.muted": "#4a4a4a",
+      "color.accent": "#000000",
+      "color.onAccent": "#ffffff",
+      "color.border": "#000000",
+      "color.border.muted": "#8a8a8a",
+      "color.danger": "#8a1010",
+      "color.success": "#0b5c2e",
+      "color.warn": "#6b3d00",
+      "color.missed.fill": "#d4d4d4",
+      "color.missed.text": "#000000",
+      "color.debt.fill": "#bcbcbc",
+      "font.sans": "system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', sans-serif",
+      "font.mono": "ui-monospace, 'Roboto Mono', 'SFMono-Regular', monospace",
+      "size.small": "15px",
+      "size.body": "18px",
+      "size.h3": "22px",
+      "size.h2": "28px",
+      "size.h1": "40px",
+      "size.clock": "48px",
+      "space.1": "4px",
+      "space.2": "8px",
+      "space.3": "12px",
+      "space.4": "16px",
+      "space.5": "20px",
+      "space.6": "24px",
+      "space.8": "32px",
+      "radius.none": "0px",
+      "radius.sm": "2px",
+      "radius.md": "2px",
+      "motion.fast": "0ms",
+      "motion.base": "0ms",
+      "stroke.hair": "1px",
+      "stroke.strong": "3px",
+      "stroke.heavy": "5px"
+    },
+    "dark": {
+      "color.surface": "#121212",
+      "color.surface.muted": "#1f1f1f",
+      "color.text": "#f5f5f5",
+      "color.text.muted": "#b8b8b8",
+      "color.accent": "#ffffff",
+      "color.onAccent": "#121212",
+      "color.border": "#e6e6e6",
+      "color.border.muted": "#6a6a6a",
+      "color.danger": "#ff9a9a",
+      "color.success": "#7fe0a8",
+      "color.warn": "#ffc46b",
+      "color.missed.fill": "#2e2e2e",
+      "color.missed.text": "#f5f5f5",
+      "color.debt.fill": "#3a3a3a"
+    }
+  },
+  "components": [
+    {
+      "id": "CMP-BTN-01",
+      "name": "Primary button",
+      "level": "component",
+      "reuse": "system",
+      "role": "accent",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default",
+        "hover",
+        "focus",
+        "active",
+        "disabled",
+        "loading"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "active",
+        "disabled",
+        "loading"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible",
+        "44×44 target"
+      ],
+      "tokens": [
+        "color.accent",
+        "color.onAccent",
+        "radius.md"
+      ],
+      "rationale": "системный компонент",
+      "usage": {
+        "maxPerScreen": 1
+      }
+    },
+    {
+      "id": "CMP-BTN-02",
+      "name": "Secondary button",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default",
+        "hover",
+        "focus",
+        "disabled"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible",
+        "44×44 target"
+      ],
+      "tokens": [
+        "color.accent",
+        "color.onAccent",
+        "radius.md"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-BTN-03",
+      "name": "Ghost button",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default",
+        "hover",
+        "focus"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible",
+        "44×44 target"
+      ],
+      "tokens": [
+        "color.accent",
+        "color.onAccent",
+        "radius.md"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-INPUT-01",
+      "name": "Text input",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default",
+        "focus",
+        "error",
+        "disabled"
+      ],
+      "states": [
+        "default",
+        "focus",
+        "error",
+        "disabled"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "visible label",
+        "autocomplete",
+        "error text + aria-describedby"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border",
+        "radius.md"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-SELECT-01",
+      "name": "Select",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default",
+        "focus",
+        "disabled"
+      ],
+      "states": [
+        "default",
+        "focus",
+        "disabled"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "label",
+        "native control by default"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-CHECK-01",
+      "name": "Checkbox",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default",
+        "focus",
+        "disabled"
+      ],
+      "states": [
+        "default",
+        "focus",
+        "disabled"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "label wraps control",
+        "24×24 minimum"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-RADIO-01",
+      "name": "Radio group",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default",
+        "focus",
+        "disabled"
+      ],
+      "states": [
+        "default",
+        "focus",
+        "disabled"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "fieldset + legend",
+        "arrow-key navigation"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-SWITCH-01",
+      "name": "Switch",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default",
+        "focus",
+        "disabled"
+      ],
+      "states": [
+        "default",
+        "focus",
+        "disabled"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "role=switch semantics",
+        "state announced"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-TABLE-01",
+      "name": "Data table",
+      "level": "component",
+      "reuse": "shared",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "caption",
+        "scope",
+        "sortable aria-sort"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-TABS-01",
+      "name": "Tabs",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default",
+        "focus"
+      ],
+      "states": [
+        "default",
+        "focus"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "role=tablist",
+        "aria-selected",
+        "arrow keys"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-NAV-01",
+      "name": "Primary navigation",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-CRUMB-01",
+      "name": "Breadcrumbs",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-PAGER-01",
+      "name": "Pagination",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-MODAL-01",
+      "name": "Modal dialog",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "native dialog",
+        "focus returns",
+        "safe default"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-POPOVER-01",
+      "name": "Popover",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-TOAST-01",
+      "name": "Toast",
+      "level": "component",
+      "reuse": "system",
+      "role": "utility",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "success",
+        "error"
+      ],
+      "states": [
+        "success",
+        "error"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-TOOLTIP-01",
+      "name": "Tooltip",
+      "level": "component",
+      "reuse": "system",
+      "role": "utility",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-EMPTY-01",
+      "name": "Empty state",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-LOADING-01",
+      "name": "Skeleton",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-ERROR-01",
+      "name": "Inline error",
+      "level": "component",
+      "reuse": "system",
+      "role": "utility",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "PATTERN-THEME-01",
+      "name": "Theme switch (system / light / dark)",
+      "level": "pattern",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "переиспользуемый паттерн"
+    },
+    {
+      "id": "PATTERN-HERO-01",
+      "name": "Hero",
+      "level": "pattern",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "переиспользуемый паттерн",
+      "usage": {
+        "maxPerScreen": 1
+      }
+    },
+    {
+      "id": "PATTERN-CARD-01",
+      "name": "Card",
+      "level": "pattern",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "переиспользуемый паттерн"
+    },
+    {
+      "id": "PATTERN-GALLERY-01",
+      "name": "Gallery (scroll-snap)",
+      "level": "pattern",
+      "reuse": "local",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "переиспользуемый паттерн"
+    },
+    {
+      "id": "PATTERN-PRICING-01",
+      "name": "Pricing",
+      "level": "pattern",
+      "reuse": "local",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "переиспользуемый паттерн"
+    },
+    {
+      "id": "PATTERN-FORM-01",
+      "name": "Form",
+      "level": "pattern",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default",
+        "error"
+      ],
+      "states": [
+        "default",
+        "error"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "переиспользуемый паттерн"
+    },
+    {
+      "id": "PATTERN-DASH-01",
+      "name": "Dashboard KPI row",
+      "level": "pattern",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "переиспользуемый паттерн"
+    },
+    {
+      "id": "CMP-ALERT-01",
+      "name": "Alert / banner",
+      "level": "component",
+      "reuse": "system",
+      "role": "utility",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "info",
+        "success",
+        "warning",
+        "error"
+      ],
+      "states": [
+        "info",
+        "success",
+        "warning",
+        "error"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "role=status or alert",
+        "not color-only"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.danger"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-ACCORDION-01",
+      "name": "Accordion",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default",
+        "open"
+      ],
+      "states": [
+        "default",
+        "open"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-MENU-01",
+      "name": "Dropdown menu",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default",
+        "open"
+      ],
+      "states": [
+        "default",
+        "open"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "role=menu",
+        "Escape closes",
+        "focus returns"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент",
+      "usage": {
+        "maxPerScreen": 1
+      }
+    },
+    {
+      "id": "CMP-SEGMENTED-01",
+      "name": "Segmented control",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-INPUTGROUP-01",
+      "name": "Input group",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default",
+        "focus"
+      ],
+      "states": [
+        "default",
+        "focus"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-SEARCH-01",
+      "name": "Search field",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default",
+        "focus"
+      ],
+      "states": [
+        "default",
+        "focus"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "aria-label",
+        "type=search",
+        "clear button with name"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-ICONBTN-01",
+      "name": "Icon-only button",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default",
+        "hover",
+        "focus",
+        "disabled"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "aria-label",
+        "focus visible",
+        "44×44 target"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-FLOATING-01",
+      "name": "Floating label",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default",
+        "focus"
+      ],
+      "states": [
+        "default",
+        "focus"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-RANGE-01",
+      "name": "Range",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default",
+        "focus"
+      ],
+      "states": [
+        "default",
+        "focus"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-PROGRESS-01",
+      "name": "Progress",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-SPINNER-01",
+      "name": "Spinner",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-PLACEHOLDER-01",
+      "name": "Placeholder lines",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-LIST-01",
+      "name": "List group",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-CHIPS-01",
+      "name": "Filter chips",
+      "level": "component",
+      "reuse": "shared",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default",
+        "selected"
+      ],
+      "states": [
+        "default",
+        "selected"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-AVATAR-01",
+      "name": "Avatar",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-STEPPER-01",
+      "name": "Stepper",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-UPLOAD-01",
+      "name": "File upload",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-TOOLBAR-01",
+      "name": "Table toolbar",
+      "level": "component",
+      "reuse": "shared",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-BOTTOMNAV-01",
+      "name": "Bottom navigation (mobile)",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "3–5 destinations",
+        "aria-current",
+        "labels visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.accent",
+        "size.small"
+      ],
+      "rationale": "системный компонент",
+      "usage": {
+        "maxPerScreen": 1
+      }
+    },
+    {
+      "id": "CMP-FAB-01",
+      "name": "Floating action button",
+      "level": "component",
+      "reuse": "system",
+      "role": "accent",
+      "platforms": [
+        "mobile",
+        "tablet"
+      ],
+      "variants": [
+        "default",
+        "hover",
+        "focus"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "aria-label",
+        "not covering the bottom bar"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент",
+      "usage": {
+        "maxPerScreen": 1
+      }
+    },
+    {
+      "id": "CMP-SHEET-01",
+      "name": "Bottom sheet",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "role=dialog",
+        "focus trap",
+        "Escape closes"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент",
+      "usage": {
+        "maxPerScreen": 1
+      }
+    },
+    {
+      "id": "CMP-RAIL-01",
+      "name": "Navigation rail (tablet)",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "3–7 destinations",
+        "aria-current"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "PATTERN-STATES-01",
+      "name": "Data states (loading / empty / error / offline)",
+      "level": "pattern",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "переиспользуемый паттерн"
+    },
+    {
+      "id": "PATTERN-SETTINGS-01",
+      "name": "Settings screen",
+      "level": "pattern",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "переиспользуемый паттерн"
+    },
+    {
+      "id": "PATTERN-AUTH-01",
+      "name": "Sign-in screen",
+      "level": "pattern",
+      "reuse": "local",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default",
+        "error"
+      ],
+      "states": [
+        "default",
+        "error"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "переиспользуемый паттерн"
+    },
+    {
+      "id": "PATTERN-ONBOARDING-01",
+      "name": "Onboarding step",
+      "level": "pattern",
+      "reuse": "local",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "переиспользуемый паттерн"
+    },
+    {
+      "id": "CMP-ORDER-SUMMARY-01",
+      "name": "Order summary",
+      "level": "component",
+      "reuse": "shared",
+      "role": "neutral",
+      "platforms": [
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-PAYMENT-01",
+      "name": "Payment methods",
+      "level": "component",
+      "reuse": "shared",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "accessible name",
+        "focus visible"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-COMPARE-TABLE-01",
+      "name": "Comparison table",
+      "level": "component",
+      "reuse": "shared",
+      "role": "neutral",
+      "platforms": [
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "caption",
+        "scope",
+        "sticky first column"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-STATUS-01",
+      "name": "Status badges",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "not color-only",
+        "text label",
+        "contrast 4.5:1"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-DATE-RANGE-01",
+      "name": "Date range",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "states": [
+        "default",
+        "error"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "labels",
+        "date format hint",
+        "error text"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-SEARCH-SUGGEST-01",
+      "name": "Search suggestions",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "combobox pattern",
+        "aria-expanded",
+        "arrow keys",
+        "Escape closes"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-NOTIFICATION-01",
+      "name": "Notifications",
+      "level": "component",
+      "reuse": "shared",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default"
+      ],
+      "slots": [
+        "content"
+      ],
+      "a11y": [
+        "unread is text, not only dot",
+        "time in text",
+        "role=list"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "системный компонент"
+    },
+    {
+      "id": "CMP-CHART-01",
+      "name": "Line / area chart",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default",
+        "loading",
+        "empty",
+        "error",
+        "partial"
+      ],
+      "states": [
+        "default",
+        "empty",
+        "error"
+      ],
+      "slots": [
+        "title",
+        "takeaway",
+        "plot",
+        "legend",
+        "table"
+      ],
+      "a11y": [
+        "role=img + description",
+        "table equivalent",
+        "keyboard focus",
+        "marks 3:1",
+        "no color-only series"
+      ],
+      "tokens": [
+        "chart.series.1",
+        "chart.series.2",
+        "color.surface",
+        "color.text"
+      ],
+      "rationale": "тренд и изменение во времени; линии ≤5, площадь ≤3 серии"
+    },
+    {
+      "id": "CMP-CHART-02",
+      "name": "Bar / column chart",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default",
+        "loading",
+        "empty",
+        "error",
+        "sorted",
+        "grouped"
+      ],
+      "states": [
+        "default",
+        "sorted"
+      ],
+      "slots": [
+        "title",
+        "takeaway",
+        "plot",
+        "axis",
+        "table"
+      ],
+      "a11y": [
+        "zero baseline",
+        "sorted for ranking",
+        "value labels",
+        "table equivalent"
+      ],
+      "tokens": [
+        "chart.series.1",
+        "color.surface",
+        "color.text"
+      ],
+      "rationale": "сравнение величин и рейтинг; всегда от нуля"
+    },
+    {
+      "id": "CMP-CHART-03",
+      "name": "Scatter / bubble chart",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default",
+        "loading",
+        "empty",
+        "error",
+        "dense"
+      ],
+      "states": [
+        "default",
+        "dense"
+      ],
+      "slots": [
+        "title",
+        "takeaway",
+        "plot",
+        "legend",
+        "table"
+      ],
+      "a11y": [
+        "no color-only encoding",
+        "overplotting strategy",
+        "table equivalent"
+      ],
+      "tokens": [
+        "chart.series.1",
+        "chart.series.2",
+        "color.surface"
+      ],
+      "rationale": "связь двух-трёх величин; площадь не для точных значений"
+    },
+    {
+      "id": "CMP-CHART-04",
+      "name": "Part-to-whole chart",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default",
+        "loading",
+        "empty",
+        "error",
+        "other"
+      ],
+      "states": [
+        "default",
+        "other"
+      ],
+      "slots": [
+        "title",
+        "takeaway",
+        "plot",
+        "legend",
+        "table"
+      ],
+      "a11y": [
+        "≤5 slices",
+        "labels with values",
+        "3:1 between slices",
+        "table equivalent"
+      ],
+      "tokens": [
+        "chart.series.1",
+        "chart.series.2",
+        "chart.series.3",
+        "color.surface"
+      ],
+      "rationale": "доли: stacked bar предпочтительнее пирога; пирог ≤5"
+    },
+    {
+      "id": "CMP-CHART-05",
+      "name": "Heatmap",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default",
+        "loading",
+        "empty",
+        "error",
+        "legend"
+      ],
+      "states": [
+        "default",
+        "legend"
+      ],
+      "slots": [
+        "title",
+        "takeaway",
+        "plot",
+        "scale-legend",
+        "table"
+      ],
+      "a11y": [
+        "sequential palette only",
+        "scale legend",
+        "table equivalent",
+        "labels readable"
+      ],
+      "tokens": [
+        "chart.seq.1",
+        "chart.seq.4",
+        "chart.seq.7",
+        "color.text"
+      ],
+      "rationale": "плотность по двум осям; светлота, не радуга"
+    },
+    {
+      "id": "CMP-CHART-LEGEND-01",
+      "name": "Chart legend",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default",
+        "interactive",
+        "table-toggle"
+      ],
+      "states": [
+        "default",
+        "table-toggle"
+      ],
+      "slots": [
+        "items",
+        "toggle"
+      ],
+      "a11y": [
+        "keyboard operable",
+        "not the only encoding",
+        "table toggle"
+      ],
+      "tokens": [
+        "color.text",
+        "color.surface",
+        "color.border"
+      ],
+      "rationale": "легенда и переключатель «Таблица»"
+    },
+    {
+      "id": "CMP-CHART-TOOLTIP-01",
+      "name": "Chart tooltip",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default",
+        "focus",
+        "dismissed"
+      ],
+      "states": [
+        "default",
+        "focus"
+      ],
+      "slots": [
+        "value",
+        "label",
+        "hint"
+      ],
+      "a11y": [
+        "hover and focus",
+        "Esc dismisses",
+        "not the only way to read a value"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border"
+      ],
+      "rationale": "значение точки; доступен и мышью, и клавиатурой"
+    },
+    {
+      "id": "CMP-SPARKLINE-01",
+      "name": "Sparkline",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default",
+        "empty",
+        "error"
+      ],
+      "states": [
+        "default",
+        "empty"
+      ],
+      "slots": [
+        "value",
+        "trend"
+      ],
+      "a11y": [
+        "text value beside the line",
+        "no axes",
+        "not the only representation"
+      ],
+      "tokens": [
+        "chart.series.1",
+        "color.surface"
+      ],
+      "rationale": "тренд в строке таблицы или KPI; без осей"
+    },
+    {
+      "id": "CMP-KPI-01",
+      "name": "KPI tile",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default",
+        "loading",
+        "empty",
+        "error",
+        "stale"
+      ],
+      "states": [
+        "default",
+        "stale"
+      ],
+      "slots": [
+        "label",
+        "value",
+        "delta",
+        "context"
+      ],
+      "a11y": [
+        "delta as text with sign",
+        "no color-only meaning",
+        "period and source visible"
+      ],
+      "tokens": [
+        "color.text",
+        "color.surface",
+        "color.success",
+        "color.danger"
+      ],
+      "rationale": "одно число с дельтой и контекстом; не более 4–6 на экран",
+      "usage": {
+        "maxPerScreen": 4
+      }
+    },
+    {
+      "id": "CMP-HABIT-TILE-01",
+      "name": "Habit tile",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default",
+        "done",
+        "missed",
+        "debt",
+        "focus",
+        "disabled"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "active",
+        "selected",
+        "disabled"
+      ],
+      "slots": [
+        "icon",
+        "title",
+        "meta",
+        "status"
+      ],
+      "a11y": [
+        "native button",
+        "aria-pressed reflects done",
+        "44×44 target",
+        "state readable without colour"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.accent",
+        "color.onAccent",
+        "color.border"
+      ],
+      "rationale": "крупная плитка привычки: одно касание = отметка; состояние читается без цвета"
+    },
+    {
+      "id": "CMP-DAY-BAR-01",
+      "name": "Day progress bar",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "default",
+        "empty",
+        "full"
+      ],
+      "states": [
+        "default",
+        "disabled"
+      ],
+      "slots": [
+        "value",
+        "label"
+      ],
+      "a11y": [
+        "role=progressbar",
+        "aria-valuenow/min/max",
+        "text value beside the bar"
+      ],
+      "tokens": [
+        "color.accent",
+        "color.surface.muted",
+        "color.text"
+      ],
+      "rationale": "сегментная полоса вместо кольца: 1-битный экран не сглаживает дуги"
+    },
+    {
+      "id": "CMP-TIMEBLOCK-01",
+      "name": "Time block header",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "now",
+        "past",
+        "future"
+      ],
+      "states": [
+        "default",
+        "selected",
+        "disabled"
+      ],
+      "slots": [
+        "label",
+        "time"
+      ],
+      "a11y": [
+        "heading level 2",
+        "time element with datetime"
+      ],
+      "tokens": [
+        "color.text",
+        "color.text.muted",
+        "color.border"
+      ],
+      "rationale": "утро/день/вечер как блоки, а не вкладки: видно всё окно дня сразу"
+    },
+    {
+      "id": "CMP-HABIT-EDITOR-01",
+      "name": "Habit editor",
+      "level": "component",
+      "reuse": "system",
+      "role": "neutral",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "variants": [
+        "create",
+        "edit",
+        "error"
+      ],
+      "states": [
+        "default",
+        "focus",
+        "error",
+        "disabled"
+      ],
+      "slots": [
+        "title",
+        "icon",
+        "window",
+        "days",
+        "actions"
+      ],
+      "a11y": [
+        "dialog with label",
+        "visible labels",
+        "error text linked",
+        "focus trap"
+      ],
+      "tokens": [
+        "color.surface",
+        "color.text",
+        "color.border",
+        "color.danger"
+      ],
+      "rationale": "локальный редактор привычки без сети: имя, иконка, окно времени, дни"
+    }
+  ],
+  "screens": [
+    {
+      "id": "SCR-LIST-01",
+      "name": "Список",
+      "goal": "Найти объект и открыть его",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "components": [
+        "CMP-SEARCH-01",
+        "CMP-CHIPS-01",
+        "CMP-LIST-01",
+        "CMP-PAGER-01",
+        "CMP-EMPTY-01"
+      ],
+      "states": [
+        "empty",
+        "loading",
+        "error"
+      ],
+      "primaryAction": "открыть объект",
+      "secondaryActions": [
+        "фильтры",
+        "сортировка"
+      ],
+      "kind": "public"
+    },
+    {
+      "id": "SCR-DETAIL-01",
+      "name": "Деталка",
+      "goal": "Понять объект и совершить действие",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "components": [
+        "CMP-BTN-01",
+        "CMP-BTN-02",
+        "CMP-TABS-01",
+        "CMP-TOAST-01",
+        "CMP-ERROR-01"
+      ],
+      "states": [
+        "loading",
+        "error"
+      ],
+      "primaryAction": "основное действие",
+      "secondaryActions": [
+        "поделиться",
+        "удалить"
+      ],
+      "kind": "public"
+    },
+    {
+      "id": "SCR-FORM-01",
+      "name": "Форма",
+      "goal": "Собрать данные без ошибок",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "components": [
+        "CMP-INPUT-01",
+        "CMP-SELECT-01",
+        "CMP-CHECK-01",
+        "CMP-BTN-01",
+        "CMP-ERROR-01"
+      ],
+      "states": [
+        "error"
+      ],
+      "primaryAction": "сохранить",
+      "secondaryActions": [
+        "отмена"
+      ],
+      "kind": "public"
+    },
+    {
+      "id": "SCR-DASHBOARD-01",
+      "name": "Дашборд",
+      "goal": "Увидеть картину и отклонения",
+      "platforms": [
+        "tablet",
+        "desktop"
+      ],
+      "components": [
+        "CMP-TABLE-01",
+        "CMP-TOOLBAR-01",
+        "CMP-PROGRESS-01",
+        "CMP-EMPTY-01",
+        "CMP-KPI-01",
+        "CMP-CHART-01",
+        "CMP-CHART-LEGEND-01"
+      ],
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "partial"
+      ],
+      "primaryAction": "экспорт",
+      "secondaryActions": [
+        "фильтры периода"
+      ],
+      "kind": "auth"
+    },
+    {
+      "id": "SCR-SETTINGS-01",
+      "name": "Настройки",
+      "goal": "Изменить поведение продукта",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "components": [
+        "CMP-SWITCH-01",
+        "CMP-SEGMENTED-01",
+        "CMP-SELECT-01",
+        "CMP-BTN-01"
+      ],
+      "states": [
+        "success"
+      ],
+      "primaryAction": "сохранить",
+      "secondaryActions": [
+        "сбросить"
+      ],
+      "kind": "auth"
+    },
+    {
+      "id": "SCR-AUTH-01",
+      "name": "Вход",
+      "goal": "Попасть в продукт",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "components": [
+        "CMP-INPUT-01",
+        "CMP-BTN-01",
+        "CMP-ERROR-01"
+      ],
+      "states": [
+        "error"
+      ],
+      "primaryAction": "войти",
+      "secondaryActions": [
+        "восстановить пароль"
+      ],
+      "kind": "auth"
+    },
+    {
+      "id": "SCR-ONBOARDING-01",
+      "name": "Онбординг",
+      "goal": "Довести до первого результата",
+      "platforms": [
+        "mobile",
+        "tablet"
+      ],
+      "components": [
+        "CMP-STEPPER-01",
+        "CMP-BTN-01"
+      ],
+      "states": [],
+      "primaryAction": "продолжить",
+      "secondaryActions": [
+        "пропустить"
+      ],
+      "kind": "auth"
+    },
+    {
+      "id": "SCR-STATES-01",
+      "name": "Состояния данных",
+      "goal": "Не оставлять пользователя без объяснения",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "components": [
+        "CMP-EMPTY-01",
+        "CMP-LOADING-01",
+        "CMP-ERROR-01"
+      ],
+      "states": [
+        "empty",
+        "loading",
+        "error",
+        "offline"
+      ],
+      "primaryAction": "повторить",
+      "secondaryActions": [],
+      "kind": "system"
+    },
+    {
+      "id": "SCR-LANDING-01",
+      "name": "Лендинг",
+      "goal": "За 5 секунд понять продукт и сделать первый шаг",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "components": [
+        "CMP-BTN-01",
+        "CMP-INPUT-01"
+      ],
+      "states": [],
+      "primaryAction": "главный CTA в первом экране",
+      "secondaryActions": [
+        "второй CTA",
+        "переход к разделам"
+      ],
+      "kind": "public"
+    },
+    {
+      "id": "SCR-CHECKOUT-01",
+      "name": "Оплата",
+      "goal": "Завершить покупку без сюрпризов",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "components": [
+        "CMP-ORDER-SUMMARY-01",
+        "CMP-PAYMENT-01",
+        "CMP-INPUT-01",
+        "CMP-BTN-01",
+        "CMP-ERROR-01"
+      ],
+      "states": [
+        "loading",
+        "error",
+        "success"
+      ],
+      "primaryAction": "оплатить",
+      "secondaryActions": [
+        "промокод",
+        "изменить состав"
+      ],
+      "kind": "checkout"
+    },
+    {
+      "id": "SCR-COMPARE-01",
+      "name": "Сравнение",
+      "goal": "Выбрать из двух–четырёх вариантов",
+      "platforms": [
+        "tablet",
+        "desktop"
+      ],
+      "components": [
+        "CMP-COMPARE-TABLE-01",
+        "CMP-CHIPS-01",
+        "CMP-EMPTY-01"
+      ],
+      "states": [
+        "empty",
+        "error"
+      ],
+      "primaryAction": "выбрать вариант",
+      "secondaryActions": [
+        "убрать из сравнения"
+      ],
+      "kind": "public"
+    },
+    {
+      "id": "SCR-ACCOUNT-01",
+      "name": "Аккаунт",
+      "goal": "Управлять профилем и доступом",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "components": [
+        "CMP-AVATAR-01",
+        "CMP-INPUT-01",
+        "CMP-SWITCH-01",
+        "CMP-BTN-01",
+        "CMP-ALERT-01"
+      ],
+      "states": [
+        "error",
+        "success"
+      ],
+      "primaryAction": "сохранить",
+      "secondaryActions": [
+        "сменить пароль",
+        "удалить аккаунт"
+      ],
+      "kind": "auth"
+    },
+    {
+      "id": "SCR-ORDERS-01",
+      "name": "Заказы",
+      "goal": "Найти заказ и понять его статус",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "components": [
+        "CMP-LIST-01",
+        "CMP-STATUS-01",
+        "CMP-CHIPS-01",
+        "CMP-PAGER-01",
+        "CMP-EMPTY-01"
+      ],
+      "states": [
+        "empty",
+        "loading",
+        "error"
+      ],
+      "primaryAction": "открыть заказ",
+      "secondaryActions": [
+        "повторить заказ"
+      ],
+      "kind": "auth"
+    },
+    {
+      "id": "SCR-CALC-01",
+      "name": "Калькулятор",
+      "goal": "Ввести число и выполнить действие",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "components": [
+        "CMP-BTN-01",
+        "CMP-BTN-02",
+        "CMP-MENU-01",
+        "CMP-MODAL-01"
+      ],
+      "states": [],
+      "primaryAction": "вычислить",
+      "secondaryActions": [
+        "очистить",
+        "память"
+      ],
+      "kind": "public"
+    },
+    {
+      "id": "SCR-ANALYTICS-01",
+      "name": "Аналитика",
+      "goal": "Увидеть динамику, отклонение и причину",
+      "platforms": [
+        "tablet",
+        "desktop"
+      ],
+      "components": [
+        "CMP-KPI-01",
+        "CMP-CHART-01",
+        "CMP-CHART-02",
+        "CMP-CHART-04",
+        "CMP-CHART-LEGEND-01",
+        "CMP-CHART-TOOLTIP-01",
+        "CMP-TABLE-01",
+        "CMP-TOOLBAR-01",
+        "CMP-EMPTY-01",
+        "CMP-ERROR-01"
+      ],
+      "states": [
+        "empty",
+        "loading",
+        "error",
+        "partial"
+      ],
+      "primaryAction": "разобраться в отклонении",
+      "secondaryActions": [
+        "сменить период",
+        "экспорт",
+        "таблица"
+      ],
+      "kind": "auth"
+    },
+    {
+      "id": "SCR-HABIT-01",
+      "name": "Планер привычек (e-ink)",
+      "goal": "Отметить привычки дня одним касанием и увидеть пропуски",
+      "platforms": [
+        "mobile",
+        "tablet"
+      ],
+      "components": [
+        "CMP-HABIT-TILE-01",
+        "CMP-DAY-BAR-01",
+        "CMP-HABIT-EDITOR-01",
+        "CMP-BTN-01",
+        "CMP-EMPTY-01",
+        "CMP-ALERT-01",
+        "CMP-TOAST-01"
+      ],
+      "states": [
+        "empty",
+        "offline"
+      ],
+      "primaryAction": "отметить привычку",
+      "secondaryActions": [
+        "добавить привычку",
+        "настройки",
+        "полное обновление экрана"
+      ],
+      "kind": "public"
+    },
+    {
+      "id": "SCR-SUPPORT-01",
+      "name": "Поддержка в приложении",
+      "goal": "Найти исходный код и понять, как сообщить о проблеме",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "components": [
+        "CMP-BTN-01",
+        "CMP-ALERT-01"
+      ],
+      "states": [
+        "empty",
+        "error"
+      ],
+      "primaryAction": "открыть репозиторий",
+      "secondaryActions": [],
+      "kind": "public"
+    },
+    {
+      "id": "SCR-NOTIFY-01",
+      "name": "Напоминание окном времени",
+      "goal": "Понять, что привычка появляется сама и не требует push",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "components": [
+        "CMP-HABIT-TILE-01",
+        "CMP-DAY-BAR-01"
+      ],
+      "states": [
+        "empty",
+        "loading"
+      ],
+      "primaryAction": "отметить привычку",
+      "secondaryActions": [
+        "пропустить"
+      ],
+      "kind": "public"
+    }
+  ],
+  "icons": {
+    "family": "Material Symbols",
+    "sizes": [
+      16,
+      20,
+      24,
+      32
+    ],
+    "map": {
+      "search": "search",
+      "close": "close",
+      "menu": "menu",
+      "back": "arrow_back",
+      "forward": "arrow_forward",
+      "add": "add",
+      "remove": "remove",
+      "edit": "edit",
+      "delete": "delete",
+      "share": "share",
+      "download": "download",
+      "upload": "upload",
+      "filter": "filter_list",
+      "sort": "sort",
+      "more": "more_vert",
+      "settings": "settings",
+      "profile": "person",
+      "team": "group",
+      "home": "home",
+      "notifications": "notifications",
+      "favorite": "favorite",
+      "bookmark": "bookmark",
+      "check": "check",
+      "error": "error",
+      "warning": "warning",
+      "info": "info",
+      "help": "help",
+      "lock": "lock",
+      "mail": "mail",
+      "call": "call",
+      "chat": "chat",
+      "send": "send",
+      "attach": "attach_file",
+      "camera": "photo_camera",
+      "image": "image",
+      "play": "play_arrow",
+      "pause": "pause",
+      "location": "location_on",
+      "map": "map",
+      "calendar": "calendar_today",
+      "time": "schedule",
+      "wallet": "account_balance_wallet",
+      "card": "credit_card",
+      "cart": "shopping_cart",
+      "orders": "receipt_long",
+      "shipping": "local_shipping",
+      "dashboard": "dashboard",
+      "chart": "bar_chart",
+      "table": "table_chart",
+      "list": "list",
+      "grid": "grid_view",
+      "apps": "apps",
+      "tune": "tune",
+      "refresh": "refresh",
+      "sync": "sync",
+      "folder": "folder",
+      "file": "description",
+      "link": "link",
+      "language": "language",
+      "theme": "dark_mode",
+      "palette": "palette",
+      "visibility": "visibility",
+      "logout": "logout",
+      "verified": "verified",
+      "support": "support_agent",
+      "flight": "flight",
+      "hotel": "hotel",
+      "restaurant": "restaurant",
+      "hiking": "hiking",
+      "terrain": "terrain"
+    },
+    "rules": "Одно семейство на проект. Иконка наследует currentColor; контраст к фону ≥3:1. Icon-only кнопка обязана иметь aria-label и цель ≥44 px. Активное состояние — ось FILL, не второй файл. Эмодзи вместо иконок не используются."
+  },
+  "emoji": {
+    "version": 1,
+    "family": "Fluent Emoji",
+    "allowed": [
+      "3d",
+      "flat"
+    ],
+    "rules": "Эмодзи — только растровые/векторные картинки из набора Fluent (MIT), не системный шрифт: Apple, Windows и Android рисуют по-разному и ломают вёрстку. 3D — иллюстрации и онбординг, Flat — рядом с текстом. Внутри кнопок и полей эмодзи не используются; декоративные — alt=\"\".",
+    "forbidden": [
+      "как замена иконкам",
+      "внутри контролов",
+      "в системных сообщениях об ошибке"
+    ],
+    "sizes": [
+      40,
+      72
+    ]
+  },
+  "sources": [
+    {
+      "id": "baseline",
+      "name": "Web Platform Baseline",
+      "url": "https://api.webstatus.dev/v1/features",
+      "cadence": "auto",
+      "machine": true,
+      "owner": "design_sync",
+      "review_by": "2027-01-31"
+    },
+    {
+      "id": "material3",
+      "name": "Material 3 Expressive",
+      "url": "https://m3.material.io/blog",
+      "cadence": "quarterly",
+      "machine": false,
+      "owner": "manual",
+      "review_by": "2027-01-31"
+    },
+    {
+      "id": "apple-hig",
+      "name": "Apple Human Interface Guidelines",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/",
+      "cadence": "quarterly",
+      "machine": false,
+      "owner": "manual",
+      "review_by": "2027-01-31"
+    },
+    {
+      "id": "one-ui",
+      "name": "Samsung One UI Guidelines",
+      "url": "https://developer.samsung.com/one-ui",
+      "cadence": "quarterly",
+      "machine": false,
+      "owner": "manual",
+      "review_by": "2027-01-31"
+    },
+    {
+      "id": "material-symbols",
+      "name": "Material Symbols",
+      "url": "https://github.com/google/material-design-icons",
+      "cadence": "auto",
+      "machine": true,
+      "owner": "design_assets",
+      "review_by": "2027-04-30"
+    },
+    {
+      "id": "fluent-emoji",
+      "name": "Fluent Emoji",
+      "url": "https://github.com/microsoft/fluentui-emoji",
+      "cadence": "auto",
+      "machine": true,
+      "owner": "design_assets",
+      "review_by": "2027-04-30"
+    },
+    {
+      "id": "unicode-emoji",
+      "name": "Unicode Emoji",
+      "url": "https://unicode.org/emoji/charts/",
+      "cadence": "quarterly",
+      "machine": false,
+      "owner": "manual",
+      "review_by": "2027-03-31"
+    },
+    {
+      "id": "bootstrap",
+      "name": "Bootstrap component inventory",
+      "url": "https://getbootstrap.com/docs/",
+      "cadence": "quarterly",
+      "machine": false,
+      "owner": "watcher",
+      "review_by": "2027-01-31"
+    },
+    {
+      "id": "wcag",
+      "name": "WCAG 2.2",
+      "url": "https://www.w3.org/WAI/standards-guidelines/wcag/",
+      "cadence": "quarterly",
+      "machine": false,
+      "owner": "manual",
+      "review_by": "2027-01-31"
+    },
+    {
+      "id": "webmcp",
+      "name": "WebMCP (origin trial)",
+      "url": "https://developer.chrome.com/docs/ai/webmcp",
+      "cadence": "90 days",
+      "machine": false,
+      "owner": "manual",
+      "review_by": "2027-01-26"
+    },
+    {
+      "id": "scenarios",
+      "name": "Human scenarios (Baymard, NN/g)",
+      "url": "https://baymard.com/checkout-usability",
+      "cadence": "half-year",
+      "machine": false,
+      "owner": "manual",
+      "review_by": "2027-04-30"
+    },
+    {
+      "id": "webmcp-evals",
+      "name": "WebMCP evals (GoogleChromeLabs)",
+      "url": "https://github.com/GoogleChromeLabs/webmcp-tools",
+      "cadence": "quarterly",
+      "machine": true,
+      "owner": "manual",
+      "review_by": "2027-01-31"
+    },
+    {
+      "id": "modern-web-guidance",
+      "name": "Modern Web Guidance",
+      "url": "https://github.com/GoogleChrome/modern-web-guidance",
+      "cadence": "quarterly",
+      "machine": true,
+      "owner": "manual",
+      "review_by": "2027-01-31"
+    },
+    {
+      "id": "chartability",
+      "name": "Chartability (POUR+CAF)",
+      "url": "https://chartability.github.io/POUR-CAF/",
+      "cadence": "quarterly",
+      "machine": false,
+      "owner": "manual",
+      "review_by": "2027-04-30"
+    },
+    {
+      "id": "wcag-nontext",
+      "name": "WCAG 2.2 SC 1.4.11 Non-text Contrast",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html",
+      "cadence": "quarterly",
+      "machine": false,
+      "owner": "manual",
+      "review_by": "2027-04-30"
+    },
+    {
+      "id": "wcag-use-of-color",
+      "name": "WCAG 2.2 SC 1.4.1 Use of Color",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html",
+      "cadence": "quarterly",
+      "machine": false,
+      "owner": "manual",
+      "review_by": "2027-04-30"
+    },
+    {
+      "id": "carbon-dataviz",
+      "name": "IBM Carbon Data Visualization",
+      "url": "https://carbondesignsystem.com/building-blocks/data-visualization/overview",
+      "cadence": "quarterly",
+      "machine": false,
+      "owner": "manual",
+      "review_by": "2027-04-30"
+    },
+    {
+      "id": "ft-visual-vocabulary",
+      "name": "FT Visual Vocabulary",
+      "url": "https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary",
+      "cadence": "quarterly",
+      "machine": false,
+      "owner": "manual",
+      "review_by": "2027-04-30"
+    },
+    {
+      "id": "data-to-viz",
+      "name": "From Data to Viz (decision tree + caveats)",
+      "url": "https://www.data-to-viz.com/",
+      "cadence": "quarterly",
+      "machine": false,
+      "owner": "manual",
+      "review_by": "2027-04-30"
+    },
+    {
+      "id": "highcharts-a11y",
+      "name": "Highcharts Accessibility module",
+      "url": "https://www.highcharts.com/docs/accessibility/accessibility-module",
+      "cadence": "quarterly",
+      "machine": false,
+      "owner": "manual",
+      "review_by": "2027-04-30"
+    },
+    {
+      "id": "echarts-npm",
+      "name": "Apache ECharts (npm + release notes)",
+      "url": "https://registry.npmjs.org/echarts/latest",
+      "cadence": "quarterly",
+      "machine": true,
+      "owner": "design_sync",
+      "review_by": "2027-02-07"
+    },
+    {
+      "id": "recharts-npm",
+      "name": "Recharts (npm + release notes)",
+      "url": "https://registry.npmjs.org/recharts/latest",
+      "cadence": "quarterly",
+      "machine": true,
+      "owner": "design_sync",
+      "review_by": "2027-02-07"
+    },
+    {
+      "id": "wcag-input",
+      "name": "WCAG 2.2 — Input Modalities (2.5)",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/input-modalities",
+      "cadence": "quarterly",
+      "machine": false,
+      "owner": "manual",
+      "review_by": "2027-02-07"
+    },
+    {
+      "id": "wcag-target",
+      "name": "WCAG 2.5.8 Target Size (Minimum)",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html",
+      "cadence": "quarterly",
+      "machine": false,
+      "owner": "manual",
+      "review_by": "2027-02-07"
+    },
+    {
+      "id": "wcag-drag",
+      "name": "WCAG 2.5.7 Dragging Movements",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements.html",
+      "cadence": "quarterly",
+      "machine": false,
+      "owner": "manual",
+      "review_by": "2027-02-07"
+    },
+    {
+      "id": "wcag-hover",
+      "name": "WCAG 1.4.13 Content on Hover or Focus",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/content-on-hover-or-focus.html",
+      "cadence": "quarterly",
+      "machine": false,
+      "owner": "manual",
+      "review_by": "2027-02-07"
+    },
+    {
+      "id": "wcag-focus-obscured",
+      "name": "WCAG 2.4.11 Focus Not Obscured (Minimum)",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html",
+      "cadence": "quarterly",
+      "machine": false,
+      "owner": "manual",
+      "review_by": "2027-02-07"
+    },
+    {
+      "id": "wcag-focus-appearance",
+      "name": "WCAG 2.4.13 Focus Appearance",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/focus-appearance.html",
+      "cadence": "quarterly",
+      "machine": false,
+      "owner": "manual",
+      "review_by": "2027-02-07"
+    },
+    {
+      "id": "android-a11y",
+      "name": "Android Accessibility — touch target size",
+      "url": "https://support.google.com/accessibility/android/answer/7101858",
+      "cadence": "quarterly",
+      "machine": false,
+      "owner": "manual",
+      "review_by": "2027-02-07"
+    },
+    {
+      "id": "mdn-focus-visible",
+      "name": "MDN :focus-visible",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible",
+      "cadence": "quarterly",
+      "machine": false,
+      "owner": "manual",
+      "review_by": "2027-02-07"
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "SCN-DISCOVER",
+      "name": "Понять, что это и подходит ли",
+      "priority": "core",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "coverage": "covered",
+      "screens": [
+        "SCR-LANDING-01"
+      ],
+      "components": [
+        "PATTERN-HERO-01"
+      ],
+      "tools": [],
+      "note": ""
+    },
+    {
+      "id": "SCN-SEARCH",
+      "name": "Найти нужное",
+      "priority": "core",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "coverage": "covered",
+      "screens": [
+        "SCR-LIST-01"
+      ],
+      "components": [
+        "CMP-SEARCH-01"
+      ],
+      "tools": [
+        "search_catalog",
+        "filter_catalog"
+      ],
+      "note": ""
+    },
+    {
+      "id": "SCN-FILTER",
+      "name": "Сузить выбор",
+      "priority": "core",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "coverage": "covered",
+      "screens": [
+        "SCR-LIST-01"
+      ],
+      "components": [
+        "CMP-CHIPS-01"
+      ],
+      "tools": [
+        "search_catalog",
+        "filter_catalog"
+      ],
+      "note": ""
+    },
+    {
+      "id": "SCN-COMPARE",
+      "name": "Сравнить варианты",
+      "priority": "core",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "coverage": "covered",
+      "screens": [
+        "SCR-COMPARE-01"
+      ],
+      "components": [
+        "CMP-COMPARE-TABLE-01",
+        "CMP-CHIPS-01"
+      ],
+      "tools": [
+        "compare_items"
+      ],
+      "note": ""
+    },
+    {
+      "id": "SCN-EVALUATE",
+      "name": "Изучить детали",
+      "priority": "core",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "coverage": "covered",
+      "screens": [
+        "SCR-DETAIL-01"
+      ],
+      "components": [
+        "CMP-TABS-01",
+        "CMP-TABLE-01"
+      ],
+      "tools": [
+        "get_item"
+      ],
+      "note": ""
+    },
+    {
+      "id": "SCN-SAVE",
+      "name": "Сохранить на потом",
+      "priority": "core",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "coverage": "partial",
+      "screens": [],
+      "components": [
+        "CMP-ICONBTN-01"
+      ],
+      "tools": [],
+      "note": "нет отдельного экрана избранного"
+    },
+    {
+      "id": "SCN-BOOK",
+      "name": "Забронировать с датами",
+      "priority": "core",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "coverage": "partial",
+      "screens": [],
+      "components": [
+        "CMP-DATE-RANGE-01",
+        "PATTERN-FORM-01"
+      ],
+      "tools": [],
+      "note": "нет экрана календаря/доступности"
+    },
+    {
+      "id": "SCN-CHECKOUT",
+      "name": "Оплатить",
+      "priority": "core",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "coverage": "covered",
+      "screens": [
+        "SCR-CHECKOUT-01"
+      ],
+      "components": [
+        "CMP-PAYMENT-01",
+        "CMP-ORDER-SUMMARY-01"
+      ],
+      "tools": [
+        "get_order_summary",
+        "apply_promo",
+        "place_order"
+      ],
+      "note": ""
+    },
+    {
+      "id": "SCN-CONFIRM",
+      "name": "Получить подтверждение",
+      "priority": "core",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "coverage": "partial",
+      "screens": [
+        "SCR-CHECKOUT-01"
+      ],
+      "components": [
+        "CMP-ALERT-01"
+      ],
+      "tools": [
+        "get_order_summary",
+        "apply_promo",
+        "place_order"
+      ],
+      "note": "подтверждение — состояние checkout, не отдельный экран"
+    },
+    {
+      "id": "SCN-AUTH",
+      "name": "Войти и восстановить доступ",
+      "priority": "core",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "coverage": "covered",
+      "screens": [
+        "SCR-AUTH-01"
+      ],
+      "components": [
+        "CMP-INPUT-01",
+        "CMP-ERROR-01"
+      ],
+      "tools": [],
+      "note": ""
+    },
+    {
+      "id": "SCN-ACCOUNT",
+      "name": "Управлять профилем",
+      "priority": "core",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "coverage": "covered",
+      "screens": [
+        "SCR-ACCOUNT-01"
+      ],
+      "components": [
+        "CMP-AVATAR-01",
+        "CMP-INPUT-01"
+      ],
+      "tools": [
+        "get_profile",
+        "update_profile"
+      ],
+      "note": ""
+    },
+    {
+      "id": "SCN-ORDERS",
+      "name": "История и статус",
+      "priority": "core",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "coverage": "covered",
+      "screens": [
+        "SCR-ORDERS-01"
+      ],
+      "components": [
+        "CMP-STATUS-01",
+        "CMP-LIST-01"
+      ],
+      "tools": [
+        "search_orders",
+        "filter_orders",
+        "get_order_status",
+        "create_order"
+      ],
+      "note": ""
+    },
+    {
+      "id": "SCN-SUPPORT",
+      "name": "Получить помощь",
+      "priority": "core",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "coverage": "covered",
+      "screens": [
+        "SCR-SUPPORT-01"
+      ],
+      "components": [
+        "CMP-ACCORDION-01"
+      ],
+      "tools": [],
+      "note": "Ссылка на репозиторий в блоке «О приложении»"
+    },
+    {
+      "id": "SCN-NOTIFY",
+      "name": "Узнать о событии",
+      "priority": "core",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "coverage": "covered",
+      "screens": [
+        "SCR-NOTIFY-01"
+      ],
+      "components": [
+        "CMP-NOTIFICATION-01"
+      ],
+      "tools": [],
+      "note": "Напоминание — появление плитки в окне времени; push в офлайн-приложении недоступен и это объяснено в интерфейсе"
+    },
+    {
+      "id": "SCN-SETTINGS",
+      "name": "Настроить под себя",
+      "priority": "core",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "coverage": "covered",
+      "screens": [
+        "SCR-SETTINGS-01"
+      ],
+      "components": [
+        "CMP-SWITCH-01",
+        "CMP-SEGMENTED-01"
+      ],
+      "tools": [
+        "set_theme"
+      ],
+      "note": ""
+    },
+    {
+      "id": "SCN-ONBOARD",
+      "name": "Первый запуск",
+      "priority": "secondary",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "coverage": "covered",
+      "screens": [
+        "SCR-ONBOARDING-01"
+      ],
+      "components": [
+        "CMP-STEPPER-01"
+      ],
+      "tools": [],
+      "note": ""
+    },
+    {
+      "id": "SCN-CONTENT",
+      "name": "Прочитать материал",
+      "priority": "secondary",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "coverage": "covered",
+      "screens": [
+        "SCR-LANDING-01"
+      ],
+      "components": [
+        "PATTERN-CARD-01"
+      ],
+      "tools": [],
+      "note": ""
+    },
+    {
+      "id": "SCN-SHARE",
+      "name": "Поделиться",
+      "priority": "secondary",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "coverage": "partial",
+      "screens": [],
+      "components": [
+        "CMP-ICONBTN-01"
+      ],
+      "tools": [],
+      "note": "нет экрана/диалога шеринга"
+    },
+    {
+      "id": "SCN-REVIEWS",
+      "name": "Оценки и отзывы",
+      "priority": "secondary",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "coverage": "partial",
+      "screens": [],
+      "components": [
+        "CMP-AVATAR-01"
+      ],
+      "tools": [],
+      "note": "нет UI рейтинга и формы отзыва"
+    },
+    {
+      "id": "SCN-UPLOAD",
+      "name": "Загрузить файл",
+      "priority": "secondary",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "coverage": "partial",
+      "screens": [],
+      "components": [
+        "CMP-UPLOAD-01"
+      ],
+      "tools": [],
+      "note": "компонент есть, сценария и состояний нет"
+    },
+    {
+      "id": "SCN-EXPORT",
+      "name": "Выгрузить отчёт",
+      "priority": "secondary",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "coverage": "partial",
+      "screens": [],
+      "components": [
+        "CMP-TOOLBAR-01"
+      ],
+      "tools": [],
+      "note": "кнопка есть, потока экспорта нет"
+    },
+    {
+      "id": "SCN-CONSENT",
+      "name": "Согласия и legal",
+      "priority": "secondary",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "coverage": "missing",
+      "screens": [],
+      "components": [
+        "CMP-ALERT-01"
+      ],
+      "tools": [],
+      "note": "нет баннера согласия и страниц политики"
+    },
+    {
+      "id": "SCN-ERRORS",
+      "name": "404/500",
+      "priority": "secondary",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "coverage": "partial",
+      "screens": [
+        "SCR-STATES-01"
+      ],
+      "components": [
+        "CMP-ERROR-01"
+      ],
+      "tools": [],
+      "note": "есть состояние, нет отдельных страниц"
+    },
+    {
+      "id": "SCN-OFFLINE",
+      "name": "Нет сети",
+      "priority": "secondary",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "coverage": "partial",
+      "screens": [
+        "SCR-STATES-01"
+      ],
+      "components": [],
+      "tools": [],
+      "note": "состояние есть, PWA/кэша нет"
+    },
+    {
+      "id": "SCN-TEAM",
+      "name": "Команда и роли",
+      "priority": "secondary",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "coverage": "missing",
+      "screens": [],
+      "components": [
+        "CMP-AVATAR-01"
+      ],
+      "tools": [],
+      "note": "нет экрана участников и прав"
+    },
+    {
+      "id": "SCN-BILLING",
+      "name": "Подписка и счета",
+      "priority": "secondary",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "coverage": "missing",
+      "screens": [],
+      "components": [
+        "CMP-ORDER-SUMMARY-01"
+      ],
+      "tools": [],
+      "note": "нет биллинга"
+    },
+    {
+      "id": "SCN-LANGUAGE",
+      "name": "Сменить язык",
+      "priority": "secondary",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "coverage": "covered",
+      "screens": [
+        "SCR-SETTINGS-01"
+      ],
+      "components": [
+        "CMP-SELECT-01"
+      ],
+      "tools": [
+        "set_theme"
+      ],
+      "note": ""
+    },
+    {
+      "id": "SCN-ACCESSIBILITY",
+      "name": "Размер текста и motion",
+      "priority": "secondary",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "coverage": "partial",
+      "screens": [
+        "SCR-SETTINGS-01"
+      ],
+      "components": [
+        "CMP-SWITCH-01"
+      ],
+      "tools": [
+        "set_theme"
+      ],
+      "note": "тема есть, размера текста и reduced-motion нет"
+    },
+    {
+      "id": "SCN-PRINT",
+      "name": "Печать/PDF",
+      "priority": "secondary",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "coverage": "missing",
+      "screens": [],
+      "components": [],
+      "tools": [],
+      "note": "нет print-стилей"
+    },
+    {
+      "id": "SCN-MAP",
+      "name": "Найти на карте",
+      "priority": "secondary",
+      "platforms": [
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "coverage": "missing",
+      "screens": [],
+      "components": [
+        "CMP-CARD-01"
+      ],
+      "tools": [],
+      "note": "нет карты и координат"
+    },
+    {
+      "id": "SCN-MEASURE",
+      "name": "Понять, что происходит с метрикой",
+      "priority": "core",
+      "platforms": [
+        "tablet",
+        "desktop"
+      ],
+      "coverage": "covered",
+      "screens": [
+        "SCR-ANALYTICS-01"
+      ],
+      "components": [
+        "CMP-KPI-01",
+        "CMP-CHART-01"
+      ],
+      "tools": [
+        "get_sales_summary"
+      ],
+      "note": "вопрос → тип графика → таблица и источник"
+    },
+    {
+      "id": "SCN-ANOMALY",
+      "name": "Найти и объяснить отклонение",
+      "priority": "secondary",
+      "platforms": [
+        "tablet",
+        "desktop"
+      ],
+      "coverage": "covered",
+      "screens": [
+        "SCR-ANALYTICS-01"
+      ],
+      "components": [
+        "CMP-CHART-01",
+        "CMP-CHART-TOOLTIP-01"
+      ],
+      "tools": [
+        "filter_orders"
+      ],
+      "note": "аннотация и базовая линия обязательны"
+    }
+  ],
+  "coverage": {
+    "core": 16,
+    "covered": 11,
+    "partial": 3,
+    "missing": [
+      "SCN-SUPPORT",
+      "SCN-NOTIFY"
+    ],
+    "ratio": 0.781
+  },
+  "style": {
+    "id": "swiss-editorial",
+    "name": "Swiss / editorial",
+    "era": "1950 → 2026",
+    "direction": "swiss grid / editorial",
+    "dna": [
+      "модульная сетка",
+      "гротеск",
+      "левое выравнивание",
+      "волосяные линейки",
+      "сдержанный цвет",
+      "крупная типографика",
+      "воздух"
+    ],
+    "adopt": [
+      "12-колоночная сетка",
+      "сильная типографическая шкала",
+      "линейки",
+      "асимметрия"
+    ],
+    "adapt": [
+      "Helvetica → Inter/Onest",
+      "печатные поля → адаптивные",
+      "ч/б → токены с AA"
+    ],
+    "reject": [
+      "центрирование всего",
+      "декоративная антиква в теле",
+      "серый текст ниже 4.5:1"
+    ],
+    "constraints": {
+      "radiusMax": 2,
+      "pill": false,
+      "shadow": "none"
+    }
+  },
+  "webmcp": {
+    "status": "origin-trial",
+    "review_by": "2027-01-26",
+    "budgets": {
+      "name": 30,
+      "description": 500,
+      "paramDescription": 150,
+      "output": 1500,
+      "perScreen": 5
+    },
+    "agentAccess": {
+      "visible": true,
+      "killSwitch": true,
+      "log": true,
+      "events": [
+        "toolactivated",
+        "toolcancel"
+      ]
+    },
+    "security": {
+      "annotationPolicy": "hints-are-signals-not-enforcement",
+      "serverEnforcementFor": [
+        "financial",
+        "irreversible"
+      ],
+      "untrustedIsolation": "spotlight"
+    },
+    "tools": [
+      {
+        "id": "WEBMCP-SEARCH-01",
+        "screen": "SCR-LIST-01",
+        "name": "search_catalog",
+        "title": "Найти в каталоге",
+        "description": "Ищет элементы каталога по текстовому запросу. Возвращает название, цену и ссылку.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "Текст запроса, как его ввёл пользователь."
+            }
+          },
+          "required": [
+            "query"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "consequentialHint": false,
+          "untrustedContentHint": true,
+          "debugging": false
+        },
+        "sideEffects": "none",
+        "confirmation": "none",
+        "sample": {
+          "query": "море"
+        },
+        "impact": "read",
+        "reversible": true,
+        "enforcement": "client",
+        "dataTrust": "mixed",
+        "audit": false,
+        "idempotent": true,
+        "rateLimit": 60,
+        "maxOutput": 1500,
+        "sanitized": true,
+        "exposedTo": [
+          "https://example.com"
+        ]
+      },
+      {
+        "id": "WEBMCP-FILTER-01",
+        "screen": "SCR-LIST-01",
+        "name": "filter_catalog",
+        "title": "Отфильтровать каталог",
+        "description": "Оставляет в каталоге элементы выбранного типа (лес, вода, горы, город).",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": [
+                "all",
+                "forest",
+                "water",
+                "mountain",
+                "city"
+              ],
+              "description": "Тип места."
+            }
+          },
+          "required": [
+            "kind"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "consequentialHint": false,
+          "untrustedContentHint": true,
+          "debugging": false
+        },
+        "sideEffects": "none",
+        "confirmation": "none",
+        "sample": {
+          "kind": "water"
+        },
+        "impact": "read",
+        "reversible": true,
+        "enforcement": "client",
+        "dataTrust": "mixed",
+        "audit": false,
+        "idempotent": true,
+        "rateLimit": 60,
+        "maxOutput": 1500,
+        "sanitized": true,
+        "exposedTo": [
+          "https://example.com"
+        ]
+      },
+      {
+        "id": "WEBMCP-ITEM-01",
+        "screen": "SCR-DETAIL-01",
+        "name": "get_item",
+        "title": "Детали элемента",
+        "description": "Возвращает описание, цену и доступные даты выбранного элемента.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Идентификатор элемента из каталога."
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "consequentialHint": false,
+          "untrustedContentHint": true,
+          "debugging": false
+        },
+        "sideEffects": "none",
+        "confirmation": "none",
+        "sample": {
+          "id": "item-1"
+        },
+        "impact": "read",
+        "reversible": true,
+        "enforcement": "client",
+        "dataTrust": "mixed",
+        "audit": false,
+        "idempotent": true,
+        "rateLimit": 60,
+        "maxOutput": 1500,
+        "sanitized": true,
+        "exposedTo": [
+          "https://example.com"
+        ]
+      },
+      {
+        "id": "WEBMCP-COMPARE-01",
+        "screen": "SCR-COMPARE-01",
+        "name": "compare_items",
+        "title": "Сравнить элементы",
+        "description": "Строит таблицу сравнения для двух–четырёх элементов по их идентификаторам.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "ids": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Идентификаторы для сравнения."
+            }
+          },
+          "required": [
+            "ids"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "consequentialHint": false,
+          "untrustedContentHint": true,
+          "debugging": false
+        },
+        "sideEffects": "none",
+        "confirmation": "none",
+        "sample": {
+          "ids": [
+            "item-1",
+            "item-2"
+          ]
+        },
+        "impact": "read",
+        "reversible": true,
+        "enforcement": "client",
+        "dataTrust": "mixed",
+        "audit": false,
+        "idempotent": true,
+        "rateLimit": 60,
+        "maxOutput": 1500,
+        "sanitized": true,
+        "exposedTo": [
+          "https://example.com"
+        ]
+      },
+      {
+        "id": "WEBMCP-SUMMARY-01",
+        "screen": "SCR-CHECKOUT-01",
+        "name": "get_order_summary",
+        "title": "Сумма заказа",
+        "description": "Возвращает позиции, скидку и итоговую сумму текущего заказа.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {},
+          "required": []
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "consequentialHint": false,
+          "untrustedContentHint": true,
+          "debugging": false
+        },
+        "sideEffects": "none",
+        "confirmation": "none",
+        "sample": {},
+        "impact": "read",
+        "reversible": true,
+        "enforcement": "client",
+        "dataTrust": "mixed",
+        "audit": false,
+        "idempotent": true,
+        "rateLimit": 60,
+        "maxOutput": 1500,
+        "sanitized": true,
+        "exposedTo": [
+          "https://example.com"
+        ]
+      },
+      {
+        "id": "WEBMCP-PROMO-01",
+        "screen": "SCR-CHECKOUT-01",
+        "name": "apply_promo",
+        "title": "Применить промокод",
+        "description": "Применяет промокод к заказу и возвращает новую сумму или причину отказа.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Промокод без пробелов."
+            }
+          },
+          "required": [
+            "code"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": false,
+          "consequentialHint": false,
+          "untrustedContentHint": false,
+          "debugging": false
+        },
+        "sideEffects": "write",
+        "confirmation": "inline",
+        "sample": {
+          "code": "WEEKEND"
+        },
+        "impact": "write",
+        "reversible": true,
+        "enforcement": "server",
+        "dataTrust": "trusted",
+        "audit": true,
+        "idempotent": true,
+        "rateLimit": 10,
+        "maxOutput": 500,
+        "sanitized": true,
+        "exposedTo": [
+          "https://example.com"
+        ]
+      },
+      {
+        "id": "WEBMCP-ORDER-01",
+        "screen": "SCR-CHECKOUT-01",
+        "name": "place_order",
+        "title": "Оформить заказ",
+        "description": "Создаёт заказ и списывает оплату. Необратимо, требует подтверждения пользователя.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "method": {
+              "type": "string",
+              "enum": [
+                "card",
+                "sbp"
+              ],
+              "description": "Способ оплаты."
+            }
+          },
+          "required": [
+            "method"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": false,
+          "consequentialHint": true,
+          "untrustedContentHint": false,
+          "debugging": false
+        },
+        "sideEffects": "write",
+        "confirmation": "dialog",
+        "sample": {
+          "method": "card"
+        },
+        "impact": "financial",
+        "reversible": false,
+        "enforcement": "server",
+        "dataTrust": "trusted",
+        "audit": true,
+        "idempotent": true,
+        "rateLimit": 5,
+        "maxOutput": 500,
+        "sanitized": true,
+        "exposedTo": [
+          "https://example.com"
+        ]
+      },
+      {
+        "id": "WEBMCP-STATUS-01",
+        "screen": "SCR-ORDERS-01",
+        "name": "get_order_status",
+        "title": "Статус заказа",
+        "description": "Возвращает статус и дату доставки по номеру заказа.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "orderId": {
+              "type": "string",
+              "description": "Номер заказа."
+            }
+          },
+          "required": [
+            "orderId"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "consequentialHint": false,
+          "untrustedContentHint": true,
+          "debugging": false
+        },
+        "sideEffects": "none",
+        "confirmation": "none",
+        "sample": {
+          "orderId": "1042"
+        },
+        "impact": "read",
+        "reversible": true,
+        "enforcement": "client",
+        "dataTrust": "mixed",
+        "audit": false,
+        "idempotent": true,
+        "rateLimit": 60,
+        "maxOutput": 1500,
+        "sanitized": true,
+        "exposedTo": [
+          "https://example.com"
+        ]
+      },
+      {
+        "id": "WEBMCP-PROFILE-01",
+        "screen": "SCR-ACCOUNT-01",
+        "name": "get_profile",
+        "title": "Профиль",
+        "description": "Возвращает имя, почту и настройки текущего пользователя.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {},
+          "required": []
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "consequentialHint": false,
+          "untrustedContentHint": true,
+          "debugging": false
+        },
+        "sideEffects": "none",
+        "confirmation": "none",
+        "sample": {},
+        "impact": "read",
+        "reversible": true,
+        "enforcement": "client",
+        "dataTrust": "untrusted",
+        "audit": false,
+        "idempotent": true,
+        "rateLimit": 30,
+        "maxOutput": 1500,
+        "sanitized": true,
+        "exposedTo": [
+          "https://example.com"
+        ]
+      },
+      {
+        "id": "WEBMCP-UPDATE-01",
+        "screen": "SCR-ACCOUNT-01",
+        "name": "update_profile",
+        "title": "Обновить профиль",
+        "description": "Сохраняет имя и почту пользователя. Изменение обратимо, подтверждение не требуется.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Новое имя."
+            },
+            "email": {
+              "type": "string",
+              "description": "Новая почта."
+            }
+          },
+          "required": [
+            "name"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": false,
+          "consequentialHint": false,
+          "untrustedContentHint": true,
+          "debugging": false
+        },
+        "sideEffects": "write",
+        "confirmation": "inline",
+        "sample": {
+          "name": "Анна"
+        },
+        "impact": "write",
+        "reversible": true,
+        "enforcement": "server",
+        "dataTrust": "mixed",
+        "audit": true,
+        "idempotent": true,
+        "rateLimit": 10,
+        "maxOutput": 500,
+        "sanitized": true,
+        "exposedTo": [
+          "https://example.com"
+        ]
+      },
+      {
+        "id": "WEBMCP-THEME-01",
+        "screen": "SCR-SETTINGS-01",
+        "name": "set_theme",
+        "title": "Сменить тему",
+        "description": "Переключает тему оформления: системная, светлая или тёмная.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "theme": {
+              "type": "string",
+              "enum": [
+                "system",
+                "light",
+                "dark"
+              ],
+              "description": "Выбранная тема."
+            }
+          },
+          "required": [
+            "theme"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": false,
+          "consequentialHint": false,
+          "untrustedContentHint": false,
+          "debugging": false
+        },
+        "sideEffects": "write",
+        "confirmation": "none",
+        "sample": {
+          "theme": "dark"
+        },
+        "impact": "write",
+        "reversible": true,
+        "enforcement": "client",
+        "dataTrust": "trusted",
+        "audit": false,
+        "idempotent": true,
+        "rateLimit": 60,
+        "maxOutput": 100,
+        "sanitized": true,
+        "exposedTo": [
+          "https://example.com"
+        ]
+      },
+      {
+        "id": "WEBMCP-SALES-01",
+        "screen": "SCR-DASHBOARD-01",
+        "name": "get_sales_summary",
+        "title": "Сводка продаж",
+        "description": "Возвращает продажи, число заявок, конверсию и средний чек за выбранный период.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {},
+          "required": []
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "consequentialHint": false,
+          "untrustedContentHint": false,
+          "debugging": false
+        },
+        "sideEffects": "none",
+        "confirmation": "none",
+        "sample": {},
+        "impact": "read",
+        "reversible": true,
+        "enforcement": "client",
+        "dataTrust": "trusted",
+        "audit": false,
+        "idempotent": true,
+        "rateLimit": 30,
+        "maxOutput": 1500,
+        "sanitized": true,
+        "exposedTo": [
+          "https://example.com"
+        ]
+      },
+      {
+        "id": "WEBMCP-ORDERS-01",
+        "screen": "SCR-ORDERS-01",
+        "name": "search_orders",
+        "title": "Найти заявку",
+        "description": "Ищет заявки по имени клиента, туру или номеру и возвращает подходящие.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "Строка поиска, как её ввёл пользователь."
+            }
+          },
+          "required": [
+            "query"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "consequentialHint": false,
+          "untrustedContentHint": true,
+          "debugging": false
+        },
+        "sideEffects": "none",
+        "confirmation": "none",
+        "sample": {
+          "query": "Карелия"
+        },
+        "impact": "read",
+        "reversible": true,
+        "enforcement": "client",
+        "dataTrust": "mixed",
+        "audit": false,
+        "idempotent": true,
+        "rateLimit": 60,
+        "maxOutput": 1500,
+        "sanitized": true,
+        "exposedTo": [
+          "https://example.com"
+        ]
+      },
+      {
+        "id": "WEBMCP-ORDERS-02",
+        "screen": "SCR-ORDERS-01",
+        "name": "filter_orders",
+        "title": "Отфильтровать заявки",
+        "description": "Оставляет заявки с выбранным статусом: новые, оплачены, ожидают или отменены.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "all",
+                "new",
+                "paid",
+                "wait",
+                "cancel"
+              ],
+              "description": "Статус заявки."
+            }
+          },
+          "required": [
+            "status"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "consequentialHint": false,
+          "untrustedContentHint": true,
+          "debugging": false
+        },
+        "sideEffects": "none",
+        "confirmation": "none",
+        "sample": {
+          "status": "paid"
+        },
+        "impact": "read",
+        "reversible": true,
+        "enforcement": "client",
+        "dataTrust": "mixed",
+        "audit": false,
+        "idempotent": true,
+        "rateLimit": 60,
+        "maxOutput": 1500,
+        "sanitized": true,
+        "exposedTo": [
+          "https://example.com"
+        ]
+      },
+      {
+        "id": "WEBMCP-ORDERS-03",
+        "screen": "SCR-ORDERS-01",
+        "name": "create_order",
+        "title": "Создать заявку",
+        "description": "Открывает форму новой заявки с подставленными клиентом и туром; пользователь подтверждает отправку.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "client": {
+              "type": "string",
+              "description": "Имя клиента."
+            },
+            "tour": {
+              "type": "string",
+              "enum": [
+                "Карелия",
+                "Кавказ",
+                "Байкал",
+                "Калининград"
+              ],
+              "description": "Тур."
+            }
+          },
+          "required": [
+            "client"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": false,
+          "consequentialHint": true,
+          "untrustedContentHint": false,
+          "debugging": false
+        },
+        "sideEffects": "write",
+        "confirmation": "dialog",
+        "sample": {
+          "client": "Марина Соколова",
+          "tour": "Карелия"
+        },
+        "impact": "financial",
+        "reversible": false,
+        "enforcement": "server",
+        "dataTrust": "trusted",
+        "audit": true,
+        "idempotent": true,
+        "rateLimit": 5,
+        "maxOutput": 500,
+        "sanitized": true,
+        "exposedTo": [
+          "https://example.com"
+        ]
+      }
+    ]
+  },
+  "acceptance": [
+    "Каждый компонент в коде объявлен в контракте через data-dg-component",
+    "Экран объявлен через data-dg-screen и содержит обязательные компоненты",
+    "Состояния empty / loading / error / offline реализованы там, где заявлены",
+    "Один accent-компонент на экран; accent-бюджет описан в usage.maxPerScreen",
+    "Все иконки — из карты icons.map, одно семейство, размеры 20/24/32",
+    "Эмодзи только картинками Fluent (3D/Flat), не системным шрифтом и не в контролах",
+    "Обе темы проходят design_audit без ошибок"
+  ]
+}

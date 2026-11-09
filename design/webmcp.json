@@ -1,0 +1,692 @@
+{
+  "status": "origin-trial",
+  "review_by": "2027-01-26",
+  "api": {
+    "imperative": "document.modelContext.registerTool",
+    "fallback": "navigator.modelContext",
+    "declarative": [
+      "toolname",
+      "tooldescription",
+      "toolparamdescription",
+      "toolautosubmit"
+    ],
+    "events": [
+      "toolchange",
+      "toolactivated",
+      "toolcancel"
+    ]
+  },
+  "budgets": {
+    "name": 30,
+    "description": 500,
+    "paramDescription": 150,
+    "output": 1500,
+    "perScreen": 5
+  },
+  "agentAccess": {
+    "visible": true,
+    "killSwitch": true,
+    "log": true,
+    "events": [
+      "toolactivated",
+      "toolcancel"
+    ]
+  },
+  "security": {
+    "annotationPolicy": "hints-are-signals-not-enforcement",
+    "serverEnforcementFor": [
+      "financial",
+      "irreversible"
+    ],
+    "untrustedIsolation": "spotlight"
+  },
+  "tools": [
+    {
+      "id": "WEBMCP-SEARCH-01",
+      "screen": "SCR-LIST-01",
+      "name": "search_catalog",
+      "title": "Найти в каталоге",
+      "description": "Ищет элементы каталога по текстовому запросу. Возвращает название, цену и ссылку.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Текст запроса, как его ввёл пользователь."
+          }
+        },
+        "required": [
+          "query"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "consequentialHint": false,
+        "untrustedContentHint": true,
+        "debugging": false
+      },
+      "sideEffects": "none",
+      "confirmation": "none",
+      "sample": {
+        "query": "море"
+      },
+      "impact": "read",
+      "reversible": true,
+      "enforcement": "client",
+      "dataTrust": "mixed",
+      "audit": false,
+      "idempotent": true,
+      "rateLimit": 60,
+      "maxOutput": 1500,
+      "sanitized": true,
+      "exposedTo": [
+        "https://example.com"
+      ]
+    },
+    {
+      "id": "WEBMCP-FILTER-01",
+      "screen": "SCR-LIST-01",
+      "name": "filter_catalog",
+      "title": "Отфильтровать каталог",
+      "description": "Оставляет в каталоге элементы выбранного типа (лес, вода, горы, город).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "all",
+              "forest",
+              "water",
+              "mountain",
+              "city"
+            ],
+            "description": "Тип места."
+          }
+        },
+        "required": [
+          "kind"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "consequentialHint": false,
+        "untrustedContentHint": true,
+        "debugging": false
+      },
+      "sideEffects": "none",
+      "confirmation": "none",
+      "sample": {
+        "kind": "water"
+      },
+      "impact": "read",
+      "reversible": true,
+      "enforcement": "client",
+      "dataTrust": "mixed",
+      "audit": false,
+      "idempotent": true,
+      "rateLimit": 60,
+      "maxOutput": 1500,
+      "sanitized": true,
+      "exposedTo": [
+        "https://example.com"
+      ]
+    },
+    {
+      "id": "WEBMCP-ITEM-01",
+      "screen": "SCR-DETAIL-01",
+      "name": "get_item",
+      "title": "Детали элемента",
+      "description": "Возвращает описание, цену и доступные даты выбранного элемента.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Идентификатор элемента из каталога."
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "consequentialHint": false,
+        "untrustedContentHint": true,
+        "debugging": false
+      },
+      "sideEffects": "none",
+      "confirmation": "none",
+      "sample": {
+        "id": "item-1"
+      },
+      "impact": "read",
+      "reversible": true,
+      "enforcement": "client",
+      "dataTrust": "mixed",
+      "audit": false,
+      "idempotent": true,
+      "rateLimit": 60,
+      "maxOutput": 1500,
+      "sanitized": true,
+      "exposedTo": [
+        "https://example.com"
+      ]
+    },
+    {
+      "id": "WEBMCP-COMPARE-01",
+      "screen": "SCR-COMPARE-01",
+      "name": "compare_items",
+      "title": "Сравнить элементы",
+      "description": "Строит таблицу сравнения для двух–четырёх элементов по их идентификаторам.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Идентификаторы для сравнения."
+          }
+        },
+        "required": [
+          "ids"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "consequentialHint": false,
+        "untrustedContentHint": true,
+        "debugging": false
+      },
+      "sideEffects": "none",
+      "confirmation": "none",
+      "sample": {
+        "ids": [
+          "item-1",
+          "item-2"
+        ]
+      },
+      "impact": "read",
+      "reversible": true,
+      "enforcement": "client",
+      "dataTrust": "mixed",
+      "audit": false,
+      "idempotent": true,
+      "rateLimit": 60,
+      "maxOutput": 1500,
+      "sanitized": true,
+      "exposedTo": [
+        "https://example.com"
+      ]
+    },
+    {
+      "id": "WEBMCP-SUMMARY-01",
+      "screen": "SCR-CHECKOUT-01",
+      "name": "get_order_summary",
+      "title": "Сумма заказа",
+      "description": "Возвращает позиции, скидку и итоговую сумму текущего заказа.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "consequentialHint": false,
+        "untrustedContentHint": true,
+        "debugging": false
+      },
+      "sideEffects": "none",
+      "confirmation": "none",
+      "sample": {},
+      "impact": "read",
+      "reversible": true,
+      "enforcement": "client",
+      "dataTrust": "mixed",
+      "audit": false,
+      "idempotent": true,
+      "rateLimit": 60,
+      "maxOutput": 1500,
+      "sanitized": true,
+      "exposedTo": [
+        "https://example.com"
+      ]
+    },
+    {
+      "id": "WEBMCP-PROMO-01",
+      "screen": "SCR-CHECKOUT-01",
+      "name": "apply_promo",
+      "title": "Применить промокод",
+      "description": "Применяет промокод к заказу и возвращает новую сумму или причину отказа.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Промокод без пробелов."
+          }
+        },
+        "required": [
+          "code"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "consequentialHint": false,
+        "untrustedContentHint": false,
+        "debugging": false
+      },
+      "sideEffects": "write",
+      "confirmation": "inline",
+      "sample": {
+        "code": "WEEKEND"
+      },
+      "impact": "write",
+      "reversible": true,
+      "enforcement": "server",
+      "dataTrust": "trusted",
+      "audit": true,
+      "idempotent": true,
+      "rateLimit": 10,
+      "maxOutput": 500,
+      "sanitized": true,
+      "exposedTo": [
+        "https://example.com"
+      ]
+    },
+    {
+      "id": "WEBMCP-ORDER-01",
+      "screen": "SCR-CHECKOUT-01",
+      "name": "place_order",
+      "title": "Оформить заказ",
+      "description": "Создаёт заказ и списывает оплату. Необратимо, требует подтверждения пользователя.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "method": {
+            "type": "string",
+            "enum": [
+              "card",
+              "sbp"
+            ],
+            "description": "Способ оплаты."
+          }
+        },
+        "required": [
+          "method"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "consequentialHint": true,
+        "untrustedContentHint": false,
+        "debugging": false
+      },
+      "sideEffects": "write",
+      "confirmation": "dialog",
+      "sample": {
+        "method": "card"
+      },
+      "impact": "financial",
+      "reversible": false,
+      "enforcement": "server",
+      "dataTrust": "trusted",
+      "audit": true,
+      "idempotent": true,
+      "rateLimit": 5,
+      "maxOutput": 500,
+      "sanitized": true,
+      "exposedTo": [
+        "https://example.com"
+      ]
+    },
+    {
+      "id": "WEBMCP-STATUS-01",
+      "screen": "SCR-ORDERS-01",
+      "name": "get_order_status",
+      "title": "Статус заказа",
+      "description": "Возвращает статус и дату доставки по номеру заказа.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "orderId": {
+            "type": "string",
+            "description": "Номер заказа."
+          }
+        },
+        "required": [
+          "orderId"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "consequentialHint": false,
+        "untrustedContentHint": true,
+        "debugging": false
+      },
+      "sideEffects": "none",
+      "confirmation": "none",
+      "sample": {
+        "orderId": "1042"
+      },
+      "impact": "read",
+      "reversible": true,
+      "enforcement": "client",
+      "dataTrust": "mixed",
+      "audit": false,
+      "idempotent": true,
+      "rateLimit": 60,
+      "maxOutput": 1500,
+      "sanitized": true,
+      "exposedTo": [
+        "https://example.com"
+      ]
+    },
+    {
+      "id": "WEBMCP-PROFILE-01",
+      "screen": "SCR-ACCOUNT-01",
+      "name": "get_profile",
+      "title": "Профиль",
+      "description": "Возвращает имя, почту и настройки текущего пользователя.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "consequentialHint": false,
+        "untrustedContentHint": true,
+        "debugging": false
+      },
+      "sideEffects": "none",
+      "confirmation": "none",
+      "sample": {},
+      "impact": "read",
+      "reversible": true,
+      "enforcement": "client",
+      "dataTrust": "untrusted",
+      "audit": false,
+      "idempotent": true,
+      "rateLimit": 30,
+      "maxOutput": 1500,
+      "sanitized": true,
+      "exposedTo": [
+        "https://example.com"
+      ]
+    },
+    {
+      "id": "WEBMCP-UPDATE-01",
+      "screen": "SCR-ACCOUNT-01",
+      "name": "update_profile",
+      "title": "Обновить профиль",
+      "description": "Сохраняет имя и почту пользователя. Изменение обратимо, подтверждение не требуется.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Новое имя."
+          },
+          "email": {
+            "type": "string",
+            "description": "Новая почта."
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "consequentialHint": false,
+        "untrustedContentHint": true,
+        "debugging": false
+      },
+      "sideEffects": "write",
+      "confirmation": "inline",
+      "sample": {
+        "name": "Анна"
+      },
+      "impact": "write",
+      "reversible": true,
+      "enforcement": "server",
+      "dataTrust": "mixed",
+      "audit": true,
+      "idempotent": true,
+      "rateLimit": 10,
+      "maxOutput": 500,
+      "sanitized": true,
+      "exposedTo": [
+        "https://example.com"
+      ]
+    },
+    {
+      "id": "WEBMCP-THEME-01",
+      "screen": "SCR-SETTINGS-01",
+      "name": "set_theme",
+      "title": "Сменить тему",
+      "description": "Переключает тему оформления: системная, светлая или тёмная.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "theme": {
+            "type": "string",
+            "enum": [
+              "system",
+              "light",
+              "dark"
+            ],
+            "description": "Выбранная тема."
+          }
+        },
+        "required": [
+          "theme"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "consequentialHint": false,
+        "untrustedContentHint": false,
+        "debugging": false
+      },
+      "sideEffects": "write",
+      "confirmation": "none",
+      "sample": {
+        "theme": "dark"
+      },
+      "impact": "write",
+      "reversible": true,
+      "enforcement": "client",
+      "dataTrust": "trusted",
+      "audit": false,
+      "idempotent": true,
+      "rateLimit": 60,
+      "maxOutput": 100,
+      "sanitized": true,
+      "exposedTo": [
+        "https://example.com"
+      ]
+    },
+    {
+      "id": "WEBMCP-SALES-01",
+      "screen": "SCR-DASHBOARD-01",
+      "name": "get_sales_summary",
+      "title": "Сводка продаж",
+      "description": "Возвращает продажи, число заявок, конверсию и средний чек за выбранный период.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "consequentialHint": false,
+        "untrustedContentHint": false,
+        "debugging": false
+      },
+      "sideEffects": "none",
+      "confirmation": "none",
+      "sample": {},
+      "impact": "read",
+      "reversible": true,
+      "enforcement": "client",
+      "dataTrust": "trusted",
+      "audit": false,
+      "idempotent": true,
+      "rateLimit": 30,
+      "maxOutput": 1500,
+      "sanitized": true,
+      "exposedTo": [
+        "https://example.com"
+      ]
+    },
+    {
+      "id": "WEBMCP-ORDERS-01",
+      "screen": "SCR-ORDERS-01",
+      "name": "search_orders",
+      "title": "Найти заявку",
+      "description": "Ищет заявки по имени клиента, туру или номеру и возвращает подходящие.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Строка поиска, как её ввёл пользователь."
+          }
+        },
+        "required": [
+          "query"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "consequentialHint": false,
+        "untrustedContentHint": true,
+        "debugging": false
+      },
+      "sideEffects": "none",
+      "confirmation": "none",
+      "sample": {
+        "query": "Карелия"
+      },
+      "impact": "read",
+      "reversible": true,
+      "enforcement": "client",
+      "dataTrust": "mixed",
+      "audit": false,
+      "idempotent": true,
+      "rateLimit": 60,
+      "maxOutput": 1500,
+      "sanitized": true,
+      "exposedTo": [
+        "https://example.com"
+      ]
+    },
+    {
+      "id": "WEBMCP-ORDERS-02",
+      "screen": "SCR-ORDERS-01",
+      "name": "filter_orders",
+      "title": "Отфильтровать заявки",
+      "description": "Оставляет заявки с выбранным статусом: новые, оплачены, ожидают или отменены.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "all",
+              "new",
+              "paid",
+              "wait",
+              "cancel"
+            ],
+            "description": "Статус заявки."
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "consequentialHint": false,
+        "untrustedContentHint": true,
+        "debugging": false
+      },
+      "sideEffects": "none",
+      "confirmation": "none",
+      "sample": {
+        "status": "paid"
+      },
+      "impact": "read",
+      "reversible": true,
+      "enforcement": "client",
+      "dataTrust": "mixed",
+      "audit": false,
+      "idempotent": true,
+      "rateLimit": 60,
+      "maxOutput": 1500,
+      "sanitized": true,
+      "exposedTo": [
+        "https://example.com"
+      ]
+    },
+    {
+      "id": "WEBMCP-ORDERS-03",
+      "screen": "SCR-ORDERS-01",
+      "name": "create_order",
+      "title": "Создать заявку",
+      "description": "Открывает форму новой заявки с подставленными клиентом и туром; пользователь подтверждает отправку.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "client": {
+            "type": "string",
+            "description": "Имя клиента."
+          },
+          "tour": {
+            "type": "string",
+            "enum": [
+              "Карелия",
+              "Кавказ",
+              "Байкал",
+              "Калининград"
+            ],
+            "description": "Тур."
+          }
+        },
+        "required": [
+          "client"
+        ]
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "consequentialHint": true,
+        "untrustedContentHint": false,
+        "debugging": false
+      },
+      "sideEffects": "write",
+      "confirmation": "dialog",
+      "sample": {
+        "client": "Марина Соколова",
+        "tour": "Карелия"
+      },
+      "impact": "financial",
+      "reversible": false,
+      "enforcement": "server",
+      "dataTrust": "trusted",
+      "audit": true,
+      "idempotent": true,
+      "rateLimit": 5,
+      "maxOutput": 500,
+      "sanitized": true,
+      "exposedTo": [
+        "https://example.com"
+      ]
+    }
+  ]
+}
