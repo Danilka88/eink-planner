@@ -1,3 +1,25 @@
 .DS_Store
 node_modules/
 *.log
+
+# Сгенерированные артефакты design-gate: не документация и не нужны на сайте
+audit.json
+audit-live.json
+rubric.json
+design/spec.json
+design/spec.md
+design/coverage.json
+design/handoff.json
+design/design-sheet.html
+design/design-sheet.json
+design/design-sheet.lock
+design/design-sheet.md
+design/webmcp.js
+design/webmcp.json
+design/inputs.local.json
+design/indexnow.json
+design/surfaces.json
+design/inputs.example.json
+design/seo/
+design/jsonld/
+design/og/

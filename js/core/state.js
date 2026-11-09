@@ -7,6 +7,7 @@ export const BACKUP_KEY = "ritual.backup";
 export const VERSION = 2;
 export const ALL_DAYS = [0, 1, 2, 3, 4, 5, 6];
 export const REPEATS = ["daily", "weekly", "monthly", "once"];
+export const LANGS = ["ru", "en", "es", "pt", "fr", "zh", "hi", "ar"];
 export const HABIT_ICONS = ["teeth", "pill", "water", "sun", "moon", "book", "dumbbell",
   "shower", "coffee", "walk", "stretch", "journal", "phone", "bed",
   "plant", "dishes", "trash", "meditate", "work", "heart", "vitamin", "clock"];
@@ -18,7 +19,8 @@ export const DEFAULT_SETTINGS = {
   debtDays: 3,
   refreshMin: 30,
   keepAwake: false,
-  lang: "auto"
+  lang: "auto",
+  timeFormat: "auto"
 };
 
 export function uid() {
@@ -88,7 +90,8 @@ export function normalize(data) {
 
   const settings = Object.assign({}, DEFAULT_SETTINGS, data && data.settings ? data.settings : {});
   settings.theme = ["auto", "light", "dark"].indexOf(settings.theme) !== -1 ? settings.theme : "auto";
-  settings.lang = ["auto", "ru", "en"].indexOf(settings.lang) !== -1 ? settings.lang : "auto";
+  settings.lang = ["auto"].concat(LANGS).indexOf(settings.lang) !== -1 ? settings.lang : "auto";
+  settings.timeFormat = ["auto", "12", "24"].indexOf(settings.timeFormat) !== -1 ? settings.timeFormat : "auto";
   settings.hideDoneMin = clamp(Number.isFinite(Number(settings.hideDoneMin)) ? Number(settings.hideDoneMin) : 20, 0, 240);
   settings.debtDays = clamp(Number.isFinite(Number(settings.debtDays)) ? Number(settings.debtDays) : 3, 0, 14);
   settings.refreshMin = clamp(Number.isFinite(Number(settings.refreshMin)) ? Number(settings.refreshMin) : 30, 0, 240);

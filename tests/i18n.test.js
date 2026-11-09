@@ -1,7 +1,9 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { detectLocale, dictionaryKeys, setLocale, t } from "../js/core/i18n.js";
+import {
+  detectLocale, dictionaryKeys, formatClock, LOCALES, RTL_LOCALES, setLocale, t
+} from "../js/core/i18n.js";
 
 test("русские склонения: 1 день, 2 дня, 5 дней", function () {
   setLocale("ru");
@@ -28,14 +30,45 @@ test("неизвестный ключ возвращается как есть",
   assert.equal(t("no.such.key"), "no.such.key");
 });
 
-test("оба словаря содержат одинаковый набор ключей", function () {
-  const ruKeys = dictionaryKeys("ru");
-  const enKeys = dictionaryKeys("en");
-  const missingInEn = ruKeys.filter(function (key) { return enKeys.indexOf(key) === -1; });
-  const missingInRu = enKeys.filter(function (key) { return ruKeys.indexOf(key) === -1; });
-  assert.deepEqual(missingInEn, [], "ключи без английского перевода");
-  assert.deepEqual(missingInRu, [], "ключи без русского перевода");
-  assert.ok(ruKeys.length > 100, "словарь подозрительно маленький");
+test("все языки содержат одинаковый набор ключей", function () {
+  const base = dictionaryKeys("ru");
+  assert.ok(base.length > 100, "словарь подозрительно маленький");
+  LOCALES.forEach(function (code) {
+    const keys = dictionaryKeys(code);
+    const missing = base.filter(function (key) { return keys.indexOf(key) === -1; });
+    const extra = keys.filter(function (key) { return base.indexOf(key) === -1; });
+    assert.deepEqual(missing, [], code + ": ключи без перевода");
+    assert.deepEqual(extra, [], code + ": лишние ключи");
+  });
+});
+
+test("ни один язык не отдаёт сырой ключ вместо текста", function () {
+  LOCALES.forEach(function (code) {
+    setLocale(code);
+    dictionaryKeys(code).forEach(function (key) {
+      const value = t(key, { n: 2, time: "1", end: "2", date: "3", title: "4", origin: "5", version: "6", name: "7", day: "8", done: 1, total: 2, missed: 3 });
+      assert.notEqual(value, key, code + ": пустой перевод " + key);
+      assert.ok(String(value).trim().length > 0, code + ": пустая строка " + key);
+      assert.ok(String(value).indexOf("{") === -1, code + ": незаполненная подстановка в " + key + " → " + value);
+    });
+  });
+  setLocale("ru");
+});
+
+test("арабский переключает направление на RTL", function () {
+  setLocale("ar");
+  assert.ok(RTL_LOCALES.indexOf("ar") !== -1);
+  setLocale("ru");
+});
+
+test("формат времени 24 и 12 часов", function () {
+  setLocale("ru", "24");
+  assert.equal(formatClock("06:30"), "06:30");
+  setLocale("en", "12");
+  assert.match(formatClock("06:30"), /6:30\s?AM/i);
+  setLocale("en", "24");
+  assert.equal(formatClock("06:30"), "06:30");
+  setLocale("ru");
 });
 
 test("detectLocale не падает без navigator", function () {

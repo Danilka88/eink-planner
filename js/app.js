@@ -2,8 +2,9 @@
    здесь только DOM, события и состояние интерфейса. */
 
 import {
-  detectLocale, formatDate, formatDay, formatDayFull, formatWeekday,
-  getLocale, setLocale, t, dayShortNames
+  detectLocale, formatClock, formatDate, formatDay, formatDayFull,
+  formatTime, formatWeekday, formatWindow, getLocale, setLocale, t,
+  dayShortNames, LOCALE_NAMES, LOCALES
 } from "./core/i18n.js";
 import { iconSvg, mountSprite } from "./core/icons.js";
 import {
@@ -83,12 +84,13 @@ function persist() {
 
 function applyLanguage() {
   const lang = state.settings.lang === "auto" ? detectLocale() : state.settings.lang;
-  setLocale(lang);
+  setLocale(lang, state.settings.timeFormat);
   document.title = t("app.name") + " — " + t("app.tagline");
   const desc = document.querySelector('meta[name="description"]');
   if (desc) desc.setAttribute("content", t("app.description"));
   const heading = document.querySelector("h1.sr-only");
   if (heading) heading.textContent = t("app.name") + " — " + t("app.tagline");
+  localize(document);
 }
 
 function localize(root) {
@@ -133,14 +135,14 @@ function layoutGrid(count) {
 }
 
 function metaFor(entry) {
-  if (entry.state === "done") return t("tile.done", { time: hm(new Date(entry.at)) });
-  if (entry.state === "missed") return t("tile.overdue", { end: entry.item.end });
+  if (entry.state === "done") return t("tile.done", { time: formatTime(new Date(entry.at)) });
+  if (entry.state === "missed") return t("tile.overdue", { end: formatClock(entry.item.end) });
   if (entry.state === "debt") {
     return entry.daysAgo === 1
       ? t("tile.debtYesterday")
       : t("tile.daysAgo", { n: entry.daysAgo });
   }
-  return entry.item.start + "–" + entry.item.end;
+  return formatWindow(entry.item.start, entry.item.end);
 }
 
 function ariaFor(entry) {
@@ -279,7 +281,7 @@ function renderEmpty(entries, now) {
   if (next) {
     emptyNext.textContent = t(next.tomorrow ? "board.nextTomorrow" : "board.nextToday", {
       title: next.item.title,
-      time: next.item.start
+      time: formatClock(next.item.start)
     });
   } else {
     emptyNext.textContent = t("board.nothingLeft");
@@ -287,7 +289,7 @@ function renderEmpty(entries, now) {
 }
 
 function updateClock(now) {
-  clockEl.textContent = hm(now);
+  clockEl.textContent = formatTime(now);
   dateEl.textContent = formatDay(now);
   weekdayEl.textContent = formatWeekday(now);
   const dark = document.documentElement.dataset.theme === "dark";
@@ -431,10 +433,10 @@ function renderHabits() {
         '<span class="row-main"><span class="row-title"></span><span class="row-meta"></span></span>' +
         '<button class="switch" type="button" data-act="debt-done">' + t("habits.debtDone") + "</button>" +
         '<button class="iconbtn" type="button" data-act="debt-skip" aria-label="' + t("habits.debtSkipAria", { title: entry.item.title }) + '">' +
-        iconSvg("skip") + "</button>";
+        iconSvg("skip", "ic flip") + "</button>";
       $(".row-title", li).textContent = entry.item.title;
       $(".row-meta", li).textContent = (entry.daysAgo === 1 ? t("tile.yesterday") : t("tile.daysAgo", { n: entry.daysAgo })) +
-        " · " + entry.item.start + "–" + entry.item.end;
+        " · " + formatWindow(entry.item.start, entry.item.end);
       $("[data-act='debt-done']", li).setAttribute("aria-label", t("habits.debtDoneAria", { title: entry.item.title }));
       list.appendChild(li);
     });
@@ -477,7 +479,7 @@ function renderHabits() {
         '<button class="iconbtn" type="button" data-act="edit" aria-label="' + t("habits.edit", { title: item.title }) + '">' +
         iconSvg("edit") + "</button>";
       $(".row-title", li).textContent = item.title;
-      $(".row-meta", li).textContent = item.start + "–" + item.end + " · " + repeatLabel(item);
+      $(".row-meta", li).textContent = formatWindow(item.start, item.end) + " · " + repeatLabel(item);
       list.appendChild(li);
     });
 
@@ -500,7 +502,7 @@ function renderHabits() {
 function historyStatus(entry) {
   if (!entry) return t("hist.none");
   if (entry.s === "skip") return t("hist.skipped");
-  const time = entry.t ? hm(new Date(entry.t)) : "";
+  const time = entry.t ? formatTime(new Date(entry.t)) : "";
   return entry.late
     ? t("hist.doneLate", { time: time })
     : t("hist.done", { time: time });
@@ -554,7 +556,7 @@ function renderHistory() {
       const skip = $("[data-act='hist-skip']", li);
       if (entry && entry.s === "done") {
         toggle.textContent = t("hist.remove");
-        skip.innerHTML = iconSvg("skip");
+        skip.innerHTML = iconSvg("skip", "ic flip");
         skip.setAttribute("aria-label", t("hist.skip"));
       } else if (entry && entry.s === "skip") {
         toggle.textContent = t("hist.mark");
@@ -562,7 +564,7 @@ function renderHistory() {
         skip.setAttribute("aria-label", t("hist.return"));
       } else {
         toggle.textContent = t("hist.mark");
-        skip.innerHTML = iconSvg("skip");
+        skip.innerHTML = iconSvg("skip", "ic flip");
         skip.setAttribute("aria-label", t("hist.skip"));
       }
       toggle.setAttribute("aria-label", row.item.title);
@@ -652,11 +654,23 @@ function renderSettings() {
 
   const lang = document.createElement("section");
   lang.className = "group";
-  lang.innerHTML = "<h3>" + t("set.language") + '</h3><div class="segmented">' +
-    '<button type="button" data-act="lang" data-value="auto">' + t("set.langAuto") + "</button>" +
-    '<button type="button" data-act="lang" data-value="ru">Русский</button>' +
-    '<button type="button" data-act="lang" data-value="en">English</button></div>';
+  lang.innerHTML = "<h3>" + t("set.language") + "</h3>" +
+    '<select class="selectblock" data-act="lang" aria-label="' + t("set.language") + '">' +
+    '<option value="auto">' + t("set.langAuto") + "</option>" +
+    LOCALES.map(function (code) {
+      return '<option value="' + code + '"' +
+        (state.settings.lang === code ? " selected" : "") + ">" + LOCALE_NAMES[code] + "</option>";
+    }).join("") + "</select>";
   panelBody.appendChild(lang);
+
+  const time = document.createElement("section");
+  time.className = "group";
+  time.innerHTML = "<h3>" + t("set.timeFormat") + "</h3>" +
+    '<div class="segmented">' +
+    '<button type="button" data-act="timeformat" data-value="auto">' + t("set.auto") + "</button>" +
+    '<button type="button" data-act="timeformat" data-value="24">24h</button>' +
+    '<button type="button" data-act="timeformat" data-value="12">12h</button></div>';
+  panelBody.appendChild(time);
 
   const screen = document.createElement("section");
   screen.className = "group";
@@ -672,32 +686,24 @@ function renderSettings() {
     '<div class="setting"><span>' + t("set.wake") + "</span>" +
     '<button class="switch" type="button" data-act="wake" aria-pressed="' +
     (state.settings.keepAwake ? "true" : "false") + '">' +
-    (state.settings.keepAwake ? t("ui.on") : t("ui.off")) + "</button></div>";
+    (state.settings.keepAwake ? t("ui.on") : t("ui.off")) + "</button></div>" +
+    '<div class="row2">' +
+    '<button class="btn btn-ghost" type="button" data-act="fullrefresh">' + t("set.refreshScreen") + "</button>" +
+    '<button class="btn btn-ghost" type="button" data-act="fullscreen">' +
+    (document.fullscreenElement ? t("set.exitFullscreen") : t("set.fullscreen")) + "</button>" +
+    "</div>";
   panelBody.appendChild(screen);
 
   const data = document.createElement("section");
   data.className = "group";
   data.innerHTML = "<h3>" + t("set.data") + "</h3>" +
-    '<button class="btn btn-ghost" type="button" data-act="demo">' +
-    (hasDemoBackup() ? t("set.demoOff") : t("set.demoOn")) + "</button>" +
     '<button class="btn" type="button" data-act="export">' + t("set.export") + "</button>" +
     '<label class="btn filebtn">' + t("set.import") + '<input type="file" id="importFile" accept="application/json,.json"></label>' +
+    '<button class="btn btn-ghost" type="button" data-act="demo">' +
+    (hasDemoBackup() ? t("set.demoOff") : t("set.demoOn")) + "</button>" +
     '<button class="btn btn-danger" type="button" data-act="reset">' + t("set.reset") + "</button>";
   panelBody.appendChild(data);
 
-  const refreshBtn = document.createElement("button");
-  refreshBtn.type = "button";
-  refreshBtn.className = "btn btn-ghost";
-  refreshBtn.dataset.act = "fullrefresh";
-  refreshBtn.textContent = t("set.refreshScreen");
-  panelBody.appendChild(refreshBtn);
-
-  const fullBtn = document.createElement("button");
-  fullBtn.type = "button";
-  fullBtn.className = "btn btn-ghost";
-  fullBtn.dataset.act = "fullscreen";
-  fullBtn.textContent = document.fullscreenElement ? t("set.exitFullscreen") : t("set.fullscreen");
-  panelBody.appendChild(fullBtn);
 
   const offlineOk = "serviceWorker" in navigator && window.isSecureContext;
   const about = document.createElement("section");
@@ -707,11 +713,10 @@ function renderSettings() {
     '<p class="note"><b>' + t("set.origin", { origin: location.origin }) + "</b></p>" +
     '<p class="note">' + t(offlineOk ? "set.offlineOk" : "set.offlineBad") + "</p>" +
     '<p class="note">' + t("set.sync") + "</p>" +
-    '<p class="note">' + t("set.install") + "</p>" +
     '<p class="note">' + t("set.supportNote") + "</p>" +
     '<p class="note"><a class="link" href="https://github.com/Danilka88/eink-planner" rel="noopener">' +
     t("set.support") + "</a></p>" +
-    '<p class="note">' + t("set.hint") + "</p>";
+    '<p class="note">' + t("set.install") + "</p>";
   panelBody.appendChild(about);
 
   const importFile = $("#importFile", panelBody);
@@ -720,8 +725,8 @@ function renderSettings() {
   $$("[data-act='theme']", panelBody).forEach(function (button) {
     button.setAttribute("aria-pressed", state.settings.theme === button.dataset.value ? "true" : "false");
   });
-  $$("[data-act='lang']", panelBody).forEach(function (button) {
-    button.setAttribute("aria-pressed", state.settings.lang === button.dataset.value ? "true" : "false");
+  $$("[data-act='timeformat']", panelBody).forEach(function (button) {
+    button.setAttribute("aria-pressed", state.settings.timeFormat === button.dataset.value ? "true" : "false");
   });
 }
 
@@ -1251,8 +1256,8 @@ function bind() {
       rerender();
       return;
     }
-    if (act === "lang") {
-      state.settings.lang = action.dataset.value;
+    if (act === "timeformat") {
+      state.settings.timeFormat = action.dataset.value;
       persist();
       applyLanguage();
       renderSettings();
@@ -1311,6 +1316,14 @@ function bind() {
 
   panelBody.addEventListener("change", function (event) {
     const act = event.target.dataset ? event.target.dataset.act : null;
+    if (act === "lang") {
+      state.settings.lang = event.target.value;
+      persist();
+      applyLanguage();
+      renderSettings();
+      rerender();
+      return;
+    }
     if (act === "refresh") state.settings.refreshMin = Number(event.target.value);
     else if (act === "hide") state.settings.hideDoneMin = Number(event.target.value);
     else if (act === "debt") state.settings.debtDays = Number(event.target.value);
