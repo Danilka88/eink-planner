@@ -1429,12 +1429,11 @@ function init() {
     navigator.storage.persist().catch(function () { /* not critical */ });
   }
 
+  /* Подсказка первого запуска живёт в пустом состоянии, а не в тосте:
+     всплывающая полоса после загрузки сдвигала доску (CLS). */
   if (state.meta && state.meta.firstRun) {
     state.meta.firstRun = false;
     persist();
-    window.setTimeout(function () {
-      toast(t("toast.firstRun"), null, 7000);
-    }, 700);
   }
 
   tick();
