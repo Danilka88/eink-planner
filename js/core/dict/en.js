@@ -206,6 +206,11 @@ export default {
     "icon.heart": "health",
     "icon.vitamin": "vitamins",
     "icon.clock": "time",
+    "icon.razor": "shaving",
+    "icon.scales": "weighing",
+    "icon.pressure": "blood pressure",
+    "icon.game": "play",
+    "icon.watering": "watering plants",
 
     "seed.teethAm": "Brush teeth (morning)",
     "seed.vitamins": "Vitamins",

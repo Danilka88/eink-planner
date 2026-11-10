@@ -9,7 +9,7 @@ import {
 import { iconSvg, mountSprite } from "./core/icons.js";
 import { APP_VERSION, BUILD_DATE } from "./core/version.js";
 import {
-  ALL_DAYS, BACKUP_KEY, KEY,
+  ALL_DAYS, BACKUP_KEY, HABIT_ICONS, KEY,
   demoState, exportName, exportPayload, findItem, hasDemoBackup,
   load, normalize, pruneLog, save, setEntry, uid
 } from "./core/state.js";
@@ -773,15 +773,6 @@ function openEditor(id, from, template) {
   const errorEl = $("#fErr", form);
   const titleErr = $("#fTitleErr", form);
 
-  const iconNames = {
-    teeth: "icon.teeth", pill: "icon.pill", water: "icon.water", sun: "icon.sun",
-    moon: "icon.moon", book: "icon.book", dumbbell: "icon.dumbbell", shower: "icon.shower",
-    coffee: "icon.coffee", walk: "icon.walk", stretch: "icon.stretch", journal: "icon.journal",
-    phone: "icon.phone", bed: "icon.bed", plant: "icon.plant", dishes: "icon.dishes",
-    trash: "icon.trash", meditate: "icon.meditate", work: "icon.work", heart: "icon.heart",
-    vitamin: "icon.vitamin", clock: "icon.clock"
-  };
-
   let selectedIcon = base ? base.icon : "teeth";
   let selectedDays = base ? base.days.slice() : ALL_DAYS.slice();
   let selectedRepeat = base ? base.repeat : "daily";
@@ -794,13 +785,13 @@ function openEditor(id, from, template) {
   dateInput.value = base && base.date ? base.date : todayKey();
   keepInput.checked = base ? base.keepOverdue !== false : true;
 
-  Object.keys(iconNames).forEach(function (name) {
+  HABIT_ICONS.forEach(function (name) {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "iconopt";
     button.dataset.icon = name;
     button.setAttribute("aria-pressed", name === selectedIcon ? "true" : "false");
-    button.setAttribute("aria-label", t("ed.iconAria", { name: t(iconNames[name]) }));
+    button.setAttribute("aria-label", t("ed.iconAria", { name: t("icon." + name) }));
     button.innerHTML = iconSvg(name);
     button.addEventListener("click", function () {
       selectedIcon = name;
@@ -1460,6 +1451,18 @@ function reloadForUpdate() {
   window.location.reload();
 }
 
+/* Защита от цикла: если мы уже перезагружались ради этой версии, второй раз
+   не пытаемся. Иначе рассинхрон кэша превращается в бесконечную перезагрузку. */
+function scheduleUpdateReload(reason) {
+  const key = "ritual.reload." + reason;
+  try {
+    if (sessionStorage.getItem(key)) return;
+    sessionStorage.setItem(key, "1");
+  } catch (error) { /* приватный режим */ }
+  updatePending = true;
+  whenSafeToReload();
+}
+
 /* Безопасный момент: страница скрыта (пользователь ушёл) или на экране
    нет открытой панели и висящего уведомления. */
 function whenSafeToReload() {
@@ -1526,23 +1529,20 @@ function registerServiceWorker() {
   const controlledAtBoot = Boolean(navigator.serviceWorker.controller);
   navigator.serviceWorker.addEventListener("controllerchange", function () {
     if (!controlledAtBoot || updateReloading) return;
-    updatePending = true;
-    whenSafeToReload();
+    scheduleUpdateReload("controller");
   });
 
   navigator.serviceWorker.addEventListener("message", function (event) {
     const data = event.data || {};
     if (data.type !== "version" || !data.cache) return;
     if (data.cache === "ritual-shell-" + APP_VERSION) return;
-    updatePending = true;
-    whenSafeToReload();
+    scheduleUpdateReload(data.cache);
   });
 
   navigator.serviceWorker.register("sw.js").then(function (registration) {
     /* Обновление могло установиться до того, как мы повесили слушатели. */
     if (registration.waiting && navigator.serviceWorker.controller) {
-      updatePending = true;
-      whenSafeToReload();
+      scheduleUpdateReload("waiting");
     }
     watchForUpdate(registration);
     askWorkerVersion();

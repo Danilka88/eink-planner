@@ -213,6 +213,11 @@ export default {
   "icon.heart": "صحة",
   "icon.vitamin": "فيتامينات",
   "icon.clock": "وقت",
+    "icon.razor": "حلاقة",
+    "icon.scales": "وزن",
+    "icon.pressure": "ضغط الدم",
+    "icon.game": "لعب",
+    "icon.watering": "سقي النباتات",
 
   "seed.teethAm": "تنظيف الأسنان (صباحًا)",
   "seed.vitamins": "فيتامينات",

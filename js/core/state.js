@@ -10,7 +10,8 @@ export const REPEATS = ["daily", "weekly", "monthly", "once"];
 export const LANGS = ["ru", "en", "es", "pt", "fr", "zh", "hi", "ar"];
 export const HABIT_ICONS = ["teeth", "pill", "water", "sun", "moon", "book", "dumbbell",
   "shower", "coffee", "walk", "stretch", "journal", "phone", "bed",
-  "plant", "dishes", "trash", "meditate", "work", "heart", "vitamin", "clock"];
+  "plant", "dishes", "trash", "meditate", "work", "heart", "vitamin", "clock",
+  "razor", "scales", "pressure", "game", "watering"];
 
 export const DEFAULT_SETTINGS = {
   theme: "auto",

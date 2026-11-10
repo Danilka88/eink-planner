@@ -206,6 +206,11 @@ export default {
   "icon.heart": "स्वास्थ्य",
   "icon.vitamin": "विटामिन",
   "icon.clock": "समय",
+    "icon.razor": "शेविंग",
+    "icon.scales": "वज़न",
+    "icon.pressure": "रक्तचाप",
+    "icon.game": "खेल",
+    "icon.watering": "पौधों को पानी",
 
   "seed.teethAm": "सुबह दाँत साफ़ करें",
   "seed.vitamins": "विटामिन",

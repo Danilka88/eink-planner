@@ -206,6 +206,11 @@ export default {
     "icon.heart": "здоровье",
     "icon.vitamin": "витамины",
     "icon.clock": "время",
+    "icon.razor": "бритьё",
+    "icon.scales": "взвешивание",
+    "icon.pressure": "давление",
+    "icon.game": "игра",
+    "icon.watering": "полив растений",
 
     "seed.teethAm": "Зубы утром",
     "seed.vitamins": "Витамины",

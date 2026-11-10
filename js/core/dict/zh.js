@@ -206,6 +206,11 @@ export default {
   "icon.heart": "健康",
   "icon.vitamin": "维生素",
   "icon.clock": "时间",
+    "icon.razor": "刮胡子",
+    "icon.scales": "称体重",
+    "icon.pressure": "血压",
+    "icon.game": "游戏",
+    "icon.watering": "浇花",
 
   "seed.teethAm": "早上刷牙",
   "seed.vitamins": "维生素",

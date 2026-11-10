@@ -1,5 +1,5 @@
 /* РИТУАЛ — offline app shell. Bump CACHE when any shell file changes. */
-const CACHE = "ritual-shell-1.4.1";
+const CACHE = "ritual-shell-1.4.3";
 const SHELL = [
   "./",
   "./index.html",
@@ -27,7 +27,11 @@ const SHELL = [
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE).then((cache) => cache.addAll(SHELL)).then(() => self.skipWaiting())
+    caches.open(CACHE)
+      /* cache: "reload" — иначе браузер может отдать старый файл из своего
+         HTTP-кэша, и в новый кэш попадёт устаревший код. */
+      .then((cache) => cache.addAll(SHELL.map((url) => new Request(url, { cache: "reload" }))))
+      .then(() => self.skipWaiting())
   );
 });
 
