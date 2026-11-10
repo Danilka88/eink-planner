@@ -1,6 +1,6 @@
 /** 简体中文. Ключи обязаны совпадать во всех языках. */
 export default {
-  "app.name": "Ritual",
+  "app.name": "Takt",
   "app.tagline": "每日习惯计划",
   "app.description": "面向电子墨水屏平板的本地离线习惯计划器：大号图块、一次点按完成、逾期保持可见，数据不离开设备。",
 
@@ -105,6 +105,7 @@ export default {
   "set.demoOn": "演示网格：7 个习惯",
   "set.demoOff": "恢复我的数据",
   "set.export": "导出到文件",
+  "set.share": "分享",
   "set.import": "从文件导入",
   "set.reset": "全部重置",
   "set.resetConfirm": "确定全部重置？",
@@ -153,6 +154,8 @@ export default {
   "rep.once": "一次 · {date}",
 
   "toast.done": "已标记",
+
+  "share.title": "Takt — 备份副本",
   "toast.undone": "已取消标记",
   "toast.late": "已记到前一天",
   "toast.skipped": "已记录跳过",
@@ -164,6 +167,7 @@ export default {
   "toast.deleted": "已彻底删除",
   "toast.settingsSaved": "设置已保存",
   "toast.exported": "文件已保存",
+  "toast.shareFailed": "分享失败——文件已保存",
   "toast.imported": "已导入",
   "toast.importFailed": "这个文件不适用",
   "toast.storageFull": "无法保存：存储已满",

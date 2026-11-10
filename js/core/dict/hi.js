@@ -1,6 +1,6 @@
 /** हिन्दी. Ключи обязаны совпадать во всех языках. */
 export default {
-  "app.name": "Ritual",
+  "app.name": "Takt",
   "app.tagline": "दिन की आदतों का प्लान",
   "app.description": "ई-इंक टैबलेट के लिए लोकल ऑफ़लाइन आदत प्लानर: बड़ी टाइलें, एक स्पर्श में चिह्न, बकाया दिखता रहता है, डेटा डिवाइस से बाहर नहीं जाता।",
 
@@ -105,6 +105,7 @@ export default {
   "set.demoOn": "डेमो ग्रिड: 7 आदतें",
   "set.demoOff": "मेरा डेटा वापस लाएँ",
   "set.export": "फ़ाइल में निर्यात",
+  "set.share": "साझा करें",
   "set.import": "फ़ाइल से आयात",
   "set.reset": "सब कुछ रीसेट करें",
   "set.resetConfirm": "सच में सब रीसेट करें?",
@@ -153,6 +154,8 @@ export default {
   "rep.once": "एक बार · {date}",
 
   "toast.done": "चिह्नित",
+
+  "share.title": "Takt — बैकअप प्रति",
   "toast.undone": "चिह्न हटाया",
   "toast.late": "पिछले दिन के लिए दर्ज",
   "toast.skipped": "छोड़ना दर्ज",
@@ -164,6 +167,7 @@ export default {
   "toast.deleted": "हमेशा के लिए मिटाया",
   "toast.settingsSaved": "सेटिंग सहेजी गई",
   "toast.exported": "फ़ाइल सहेजी गई",
+  "toast.shareFailed": "साझा नहीं हो सका — फ़ाइल सहेजी गई",
   "toast.imported": "आयात हुआ",
   "toast.importFailed": "यह फ़ाइल उपयुक्त नहीं",
   "toast.storageFull": "सहेजा नहीं जा सका: स्टोरेज भरा है",

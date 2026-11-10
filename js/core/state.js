@@ -259,5 +259,5 @@ export function exportPayload(state) {
 }
 
 export function exportName(now) {
-  return "ritual-" + (now ? dayKey(now) : todayKey()) + ".json";
+  return "takt-" + (now ? dayKey(now) : todayKey()) + ".json";
 }

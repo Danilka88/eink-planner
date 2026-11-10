@@ -1,6 +1,6 @@
 /** Словарь интерфейса. Ключи обязаны совпадать во всех языках (см. tests/i18n.test.js). */
 export default {
-    "app.name": "Ritual",
+    "app.name": "Takt",
     "app.tagline": "a day planner for habits",
     "app.description": "Local-first offline habit planner for e-ink tablets: large tiles, one-tap check-ins, overdue stays visible, data never leaves the device.",
 
@@ -105,6 +105,7 @@ export default {
     "set.demoOn": "Demo grid: 7 habits",
     "set.demoOff": "Bring my data back",
     "set.export": "Export to file",
+    "set.share": "Share",
     "set.import": "Import from file",
     "set.reset": "Reset everything",
     "set.resetConfirm": "Really reset everything?",
@@ -153,6 +154,8 @@ export default {
     "rep.once": "one-off · {date}",
 
     "toast.done": "Marked done",
+
+    "share.title": "Takt — backup copy",
     "toast.undone": "Mark removed",
     "toast.late": "Recorded for the previous day",
     "toast.skipped": "Skip recorded",
@@ -164,6 +167,7 @@ export default {
     "toast.deleted": "Deleted forever",
     "toast.settingsSaved": "Setting saved",
     "toast.exported": "File saved",
+    "toast.shareFailed": "Sharing failed — the file was saved",
     "toast.imported": "Imported",
     "toast.importFailed": "That file did not fit",
     "toast.storageFull": "Could not save: storage is full",

@@ -696,7 +696,9 @@ function renderSettings() {
 
   const data = document.createElement("section");
   data.className = "group";
+  const shareable = canShareFiles();
   data.innerHTML = "<h3>" + t("set.data") + "</h3>" +
+    (shareable ? '<button class="btn" type="button" data-act="share">' + t("set.share") + "</button>" : "") +
     '<button class="btn" type="button" data-act="export">' + t("set.export") + "</button>" +
     '<label class="btn filebtn">' + t("set.import") + '<input type="file" id="importFile" accept="application/json,.json"></label>' +
     '<button class="btn btn-ghost" type="button" data-act="demo">' +
@@ -982,7 +984,7 @@ function importData(event) {
   });
 }
 
-function exportData() {
+function exportData(silent) {
   const blob = new Blob([exportPayload(state)], { type: "application/json" });
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
@@ -992,7 +994,33 @@ function exportData() {
   link.click();
   link.remove();
   window.setTimeout(function () { URL.revokeObjectURL(url); }, 1500);
-  toast(t("toast.exported"));
+  if (!silent) toast(t("toast.exported"));
+}
+
+function canShareFiles() {
+  if (typeof navigator.canShare !== "function") return false;
+  try {
+    const probe = new File(["{}"], "probe.json", { type: "application/json" });
+    return navigator.canShare({ files: [probe] });
+  } catch (error) {
+    return false;
+  }
+}
+
+/* Системное меню «Поделиться»: файл уходит в выбранный чат, например в Telegram.
+   Если система не умеет — молча падаем на обычное скачивание. */
+function shareData() {
+  const name = exportName(new Date());
+  const file = new File([exportPayload(state)], name, { type: "application/json" });
+  if (!canShareFiles()) {
+    exportData();
+    return;
+  }
+  navigator.share({ files: [file], title: t("share.title") }).catch(function (error) {
+    if (error && error.name === "AbortError") return;
+    exportData(true);
+    toast(t("toast.shareFailed"), null, 5000);
+  });
 }
 
 function resetData(button) {
@@ -1308,6 +1336,7 @@ function bind() {
       return;
     }
     if (act === "demo") { toggleDemo(); return; }
+    if (act === "share") { shareData(); return; }
     if (act === "export") { exportData(); return; }
     if (act === "fullrefresh") { fullRefresh(); return; }
     if (act === "fullscreen") { setFullscreen(!document.fullscreenElement); return; }

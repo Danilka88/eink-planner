@@ -1,6 +1,6 @@
 /** العربية (RTL). Ключи обязаны совпадать во всех языках. */
 export default {
-  "app.name": "Ritual",
+  "app.name": "Takt",
   "app.tagline": "خطة العادات اليومية",
   "app.description": "مخطِّط عادات محلي يعمل دون اتصال لأجهزة e-ink: بلاطات كبيرة، تأشير بلمسة واحدة، المتأخرات تبقى ظاهرة، والبيانات لا تغادر الجهاز.",
 
@@ -112,6 +112,7 @@ export default {
   "set.demoOn": "شبكة تجريبية: 7 عادات",
   "set.demoOff": "استعادة بياناتي",
   "set.export": "تصدير إلى ملف",
+  "set.share": "مشاركة",
   "set.import": "استيراد من ملف",
   "set.reset": "إعادة ضبط الكل",
   "set.resetConfirm": "إعادة ضبط الكل فعلًا؟",
@@ -160,6 +161,8 @@ export default {
   "rep.once": "مرة واحدة · {date}",
 
   "toast.done": "تم التأشير",
+
+  "share.title": "Takt — نسخة احتياطية",
   "toast.undone": "أُزيل التأشير",
   "toast.late": "سُجِّل لليوم السابق",
   "toast.skipped": "سُجِّل التخطي",
@@ -171,6 +174,7 @@ export default {
   "toast.deleted": "حُذفت نهائيًا",
   "toast.settingsSaved": "حُفظ الإعداد",
   "toast.exported": "حُفظ الملف",
+  "toast.shareFailed": "تعذّرت المشاركة — حُفظ الملف",
   "toast.imported": "تم الاستيراد",
   "toast.importFailed": "هذا الملف غير مناسب",
   "toast.storageFull": "تعذّر الحفظ: التخزين ممتلئ",

@@ -1,6 +1,6 @@
 /** Словарь интерфейса. Ключи обязаны совпадать во всех языках (см. tests/i18n.test.js). */
 export default {
-    "app.name": "Ритуал",
+    "app.name": "Такт",
     "app.tagline": "план привычек на день",
     "app.description": "Локальный офлайн-планер привычек для e-ink планшета: крупная сетка, отметки одним касанием, просрочки видны, данные не покидают устройство.",
 
@@ -105,6 +105,7 @@ export default {
     "set.demoOn": "Демо-сетка: 7 привычек",
     "set.demoOff": "Вернуть мои данные",
     "set.export": "Экспорт в файл",
+    "set.share": "Поделиться",
     "set.import": "Импорт из файла",
     "set.reset": "Сбросить всё",
     "set.resetConfirm": "Точно сбросить всё?",
@@ -153,6 +154,8 @@ export default {
     "rep.once": "разово · {date}",
 
     "toast.done": "Отмечено",
+
+    "share.title": "Такт — резервная копия",
     "toast.undone": "Отметка снята",
     "toast.late": "Записано за прошлый день",
     "toast.skipped": "Пропуск записан",
@@ -164,6 +167,7 @@ export default {
     "toast.deleted": "Удалено навсегда",
     "toast.settingsSaved": "Настройка сохранена",
     "toast.exported": "Файл сохранён",
+    "toast.shareFailed": "Поделиться не вышло — файл сохранён",
     "toast.imported": "Импортировано",
     "toast.importFailed": "Файл не подошёл",
     "toast.storageFull": "Не удалось сохранить: память переполнена",

@@ -1,4 +1,4 @@
-# Ritual — a habit planner for e-ink
+# Takt — a habit planner for e-ink
 
 A single-page, local-first habit planner for 6" e-ink tablets. Large tiles, no
 scrolling, one-tap check-in, overdue stays visible until it is closed. No
@@ -90,6 +90,15 @@ See `docs/TESTING.md`.
 No network requests: `connect-src 'self'` in CSP blocks them at the browser
 level, and the app makes none. Data lives in `localStorage` and never leaves
 the device. See `PRIVACY.md`.
+
+## Data
+
+- Everything lives in the device browser's `localStorage`. There is no sync.
+- **Share** opens the Android share sheet: the file goes straight to Telegram, mail or Files.
+- **Export to file** downloads `takt-YYYY-MM-DD.json`.
+- **Import from file** replaces everything after confirmation.
+- Clearing site data deletes habits: export is the only safety net.
+- Address = storage. After changing the address, move data with export and import.
 
 ## License
 
