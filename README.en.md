@@ -82,7 +82,7 @@ design/               design docs, tokens, screenshots
 npm test
 ```
 
-22 tests: schedule, migrations, plurals in all 8 languages, time format.
+25 tests: schedule, migrations, plurals in all 8 languages, time format.
 See `docs/TESTING.md`.
 
 ## Privacy

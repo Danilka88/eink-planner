@@ -81,7 +81,7 @@ docs/                 architecture, modèle de données, i18n, déploiement
 npm test
 ```
 
-22 tests : horaires, migrations, pluriels dans les 8 langues, format d'heure.
+25 tests : horaires, migrations, pluriels dans les 8 langues, format d'heure.
 Voir `docs/TESTING.md`.
 
 ## Confidentialité

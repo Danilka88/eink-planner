@@ -8,7 +8,7 @@
 cd eink-planner
 git init -b main
 git add .
-git commit -m "Takt 1.2"
+git commit -m "Takt 1.4.0"
 gh repo create eink-planner --public --source=. --remote=origin --push
 gh api -X POST "repos/Danilka88/eink-planner/pages" \
   -f "source[branch]=main" -f "source[path]=/"

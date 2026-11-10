@@ -1,5 +1,5 @@
 /* РИТУАЛ — offline app shell. Bump CACHE when any shell file changes. */
-const CACHE = "ritual-shell-v2.8";
+const CACHE = "ritual-shell-v3.0";
 const SHELL = [
   "./",
   "./index.html",

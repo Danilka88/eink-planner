@@ -75,6 +75,7 @@ function toast(message, undo, ms) {
   toastTimer = window.setTimeout(function () {
     toastEl.hidden = true;
     undoFn = null;
+    if (updatePending) window.setTimeout(whenSafeToReload, 0);
   }, ms || 4500);
 }
 
@@ -1226,6 +1227,7 @@ function bind() {
     ui.editId = null;
     if (appShell && dock) appShell.insertBefore(toastEl, dock);
     else document.body.appendChild(toastEl);
+    if (updatePending) window.setTimeout(whenSafeToReload, 0);
   });
 
   panelBody.addEventListener("click", function (event) {
@@ -1442,10 +1444,78 @@ function bind() {
   });
 }
 
+/* --------------------------------------------------- автообновление
+
+   Новая версия приезжает сама: service worker ставит свежий кэш, страница
+   перезагружается в безопасный момент. Данные в localStorage, поэтому
+   перезагрузка ничего не теряет — кроме недописанной формы, её и бережём. */
+
+let updatePending = false;
+let updateReloading = false;
+let lastUpdateCheck = 0;
+
+function reloadForUpdate() {
+  if (!updatePending || updateReloading) return;
+  updateReloading = true;
+  window.location.reload();
+}
+
+/* Безопасный момент: страница скрыта (пользователь ушёл) или на экране
+   нет открытой панели и висящего уведомления. */
+function whenSafeToReload() {
+  if (document.visibilityState === "hidden") {
+    reloadForUpdate();
+    return;
+  }
+  if (!panel.open && toastEl.hidden) {
+    reloadForUpdate();
+    return;
+  }
+  const waitHidden = function () {
+    if (document.visibilityState === "hidden") {
+      document.removeEventListener("visibilitychange", waitHidden);
+      reloadForUpdate();
+    }
+  };
+  document.addEventListener("visibilitychange", waitHidden);
+}
+
+function watchForUpdate(registration) {
+  registration.addEventListener("updatefound", function () {
+    const worker = registration.installing;
+    if (!worker) return;
+    worker.addEventListener("statechange", function () {
+      /* controller есть только у уже установленного приложения:
+         первая установка перезагрузку не запускает. */
+      if (worker.state === "installed" && navigator.serviceWorker.controller) {
+        updatePending = true;
+        whenSafeToReload();
+      }
+    });
+  });
+
+  /* Пока приложение открыто — спрашиваем сервер раз в 6 часов. */
+  window.setInterval(function () {
+    lastUpdateCheck = Date.now();
+    registration.update().catch(function () { /* offline */ });
+  }, 6 * 60 * 60 * 1000);
+
+  /* Вернулись к приложению после паузы — проверяем, но не чаще раза в час. */
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState !== "visible") return;
+    if (Date.now() - lastUpdateCheck < 60 * 60 * 1000) return;
+    lastUpdateCheck = Date.now();
+    registration.update().catch(function () { /* offline */ });
+  });
+}
+
 function registerServiceWorker() {
   if (!("serviceWorker" in navigator)) return;
   if (!/^https?:$/.test(window.location.protocol)) return;
-  navigator.serviceWorker.register("sw.js").catch(function () { /* file:// or blocked */ });
+
+  navigator.serviceWorker.register("sw.js").then(function (registration) {
+    watchForUpdate(registration);
+  }).catch(function () { /* file:// or blocked */ });
 }
 
 function init() {
