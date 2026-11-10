@@ -7,6 +7,7 @@ import {
   dayShortNames, LOCALE_NAMES, LOCALES
 } from "./core/i18n.js";
 import { iconSvg, mountSprite } from "./core/icons.js";
+import { APP_VERSION, BUILD_DATE } from "./core/version.js";
 import {
   ALL_DAYS, BACKUP_KEY, KEY,
   demoState, exportName, exportPayload, findItem, hasDemoBackup,
@@ -47,7 +48,6 @@ const appShell = $(".app");
 const dock = $(".dock");
 
 const MAX_TILES = 9;
-const APP_VERSION = "1.2";
 
 let state = load(t);
 let ui = { panel: null, editFrom: null, editId: null, histDays: 7 };
@@ -642,6 +642,12 @@ function settingSelect(act, label, value, options) {
 
 function renderSettings() {
   panelTitle.textContent = t("ui.settings");
+  const badge = document.createElement("span");
+  badge.className = "ver-badge";
+  badge.textContent = APP_VERSION;
+  badge.title = BUILD_DATE;
+  badge.setAttribute("aria-hidden", "true");
+  panelTitle.appendChild(badge);
   panelBody.innerHTML = "";
 
   const theme = document.createElement("section");
