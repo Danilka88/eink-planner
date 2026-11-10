@@ -1,5 +1,5 @@
 /* РИТУАЛ — offline app shell. Bump CACHE when any shell file changes. */
-const CACHE = "ritual-shell-v3.0";
+const CACHE = "ritual-shell-1.4.1";
 const SHELL = [
   "./",
   "./index.html",
@@ -37,6 +37,15 @@ self.addEventListener("activate", (event) => {
       .then((keys) => Promise.all(keys.filter((key) => key !== CACHE).map((key) => caches.delete(key))))
       .then(() => self.clients.claim())
   );
+});
+
+/* Страница спрашивает, какой кэш активен: если он новее её собственной
+   версии, приложение перезагрузится. Это ловит обновление, приехавшее
+   прямо во время загрузки страницы. */
+self.addEventListener("message", (event) => {
+  const data = event.data || {};
+  if (data.type !== "version" || !event.source) return;
+  event.source.postMessage({ type: "version", cache: CACHE });
 });
 
 self.addEventListener("fetch", (event) => {

@@ -1,6 +1,6 @@
 {
   "name": "eink-planner",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Локальный офлайн-планер привычек для e-ink планшета",
   "type": "module",
   "private": true,

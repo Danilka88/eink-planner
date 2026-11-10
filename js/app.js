@@ -1480,6 +1480,13 @@ function whenSafeToReload() {
   document.addEventListener("visibilitychange", waitHidden);
 }
 
+/* Спрашиваем у service worker его кэш и сравниваем со своей версией. */
+function askWorkerVersion() {
+  const controller = navigator.serviceWorker.controller;
+  if (!controller) return;
+  controller.postMessage({ type: "version" });
+}
+
 function watchForUpdate(registration) {
   registration.addEventListener("updatefound", function () {
     const worker = registration.installing;
@@ -1513,8 +1520,32 @@ function registerServiceWorker() {
   if (!("serviceWorker" in navigator)) return;
   if (!/^https?:$/.test(window.location.protocol)) return;
 
+  /* Если страница уже была под управлением service worker, а контроллер
+     сменился — значит активировалась новая версия. Это ловит и тот случай,
+     когда обновление приехало прямо во время загрузки страницы. */
+  const controlledAtBoot = Boolean(navigator.serviceWorker.controller);
+  navigator.serviceWorker.addEventListener("controllerchange", function () {
+    if (!controlledAtBoot || updateReloading) return;
+    updatePending = true;
+    whenSafeToReload();
+  });
+
+  navigator.serviceWorker.addEventListener("message", function (event) {
+    const data = event.data || {};
+    if (data.type !== "version" || !data.cache) return;
+    if (data.cache === "ritual-shell-" + APP_VERSION) return;
+    updatePending = true;
+    whenSafeToReload();
+  });
+
   navigator.serviceWorker.register("sw.js").then(function (registration) {
+    /* Обновление могло установиться до того, как мы повесили слушатели. */
+    if (registration.waiting && navigator.serviceWorker.controller) {
+      updatePending = true;
+      whenSafeToReload();
+    }
     watchForUpdate(registration);
+    askWorkerVersion();
   }).catch(function () { /* file:// or blocked */ });
 }
 
