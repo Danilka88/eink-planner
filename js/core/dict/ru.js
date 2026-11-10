@@ -171,6 +171,7 @@ export default {
     "toast.imported": "Импортировано",
     "toast.importFailed": "Файл не подошёл",
     "toast.storageFull": "Не удалось сохранить: память переполнена",
+    "toast.recovered": "Файл данных повреждён, начат новый. Копия сохранена",
     "toast.fullscreenDenied": "Браузер не разрешил полный экран",
     "toast.fullscreenUnavailable": "Полный экран недоступен",
     "toast.wakeOn": "Экран будет оставаться включённым",

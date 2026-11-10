@@ -171,6 +171,7 @@ export default {
   "toast.imported": "Importado",
   "toast.importFailed": "Esse arquivo não serve",
   "toast.storageFull": "Não foi possível salvar: armazenamento cheio",
+  "toast.recovered": "O arquivo de dados estava corrompido, começou um novo. Uma cópia foi guardada",
   "toast.fullscreenDenied": "O navegador recusou a tela cheia",
   "toast.fullscreenUnavailable": "Tela cheia indisponível",
   "toast.wakeOn": "A tela vai continuar ligada",

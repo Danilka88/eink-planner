@@ -14,7 +14,7 @@ import {
 } from "./core/state.js";
 import {
   activeItems, clamp, computeDebts, computeEntries, dayKey, entryOf,
-  historyRowsFor, hm, isScheduled, minutesOf, nextUpcoming, todayKey,
+  historyRowsFor, isScheduled, minutesOf, nextUpcoming, todayKey,
   validDayKey, validTime
 } from "./core/schedule.js";
 
@@ -998,7 +998,7 @@ function exportData(silent) {
 }
 
 function canShareFiles() {
-  if (typeof navigator.canShare !== "function") return false;
+  if (typeof navigator.share !== "function" || typeof navigator.canShare !== "function") return false;
   try {
     const probe = new File(["{}"], "probe.json", { type: "application/json" });
     return navigator.canShare({ files: [probe] });
@@ -1463,6 +1463,12 @@ function init() {
   if (state.meta && state.meta.firstRun) {
     state.meta.firstRun = false;
     persist();
+  }
+
+  if (state.meta && state.meta.recovered) {
+    state.meta.recovered = false;
+    persist();
+    toast(t("toast.recovered"), null, 9000);
   }
 
   tick();

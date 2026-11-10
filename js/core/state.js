@@ -217,7 +217,12 @@ export function load(t) {
     }
     return normalized;
   } catch (error) {
-    return seedState(t);
+    /* Битые данные не выбрасываем: сохраняем как есть, чтобы их можно было
+       достать руками, и говорим об этом пользователю. */
+    try { localStorage.setItem(KEY + ".broken", raw); } catch (writeError) { /* ignore */ }
+    const recovered = seedState(t);
+    recovered.meta.recovered = true;
+    return recovered;
   }
 }
 

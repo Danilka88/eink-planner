@@ -66,10 +66,6 @@ export function getLocale() {
   return current;
 }
 
-export function isRTL() {
-  return RTL_LOCALES.indexOf(current) !== -1;
-}
-
 function rules() {
   if (!pluralRules) pluralRules = new Intl.PluralRules(current);
   return pluralRules;

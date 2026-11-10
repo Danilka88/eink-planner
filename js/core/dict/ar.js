@@ -178,6 +178,7 @@ export default {
   "toast.imported": "تم الاستيراد",
   "toast.importFailed": "هذا الملف غير مناسب",
   "toast.storageFull": "تعذّر الحفظ: التخزين ممتلئ",
+  "toast.recovered": "ملف البيانات تالف، بدأ ملف جديد. تم الاحتفاظ بنسخة",
   "toast.fullscreenDenied": "رفض المتصفح ملء الشاشة",
   "toast.fullscreenUnavailable": "ملء الشاشة غير متاح",
   "toast.wakeOn": "ستبقى الشاشة مضاءة",

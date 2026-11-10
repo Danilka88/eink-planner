@@ -171,6 +171,7 @@ export default {
   "toast.imported": "Importé",
   "toast.importFailed": "Ce fichier ne convient pas",
   "toast.storageFull": "Impossible d'enregistrer : stockage plein",
+  "toast.recovered": "Le fichier de données était corrompu, un nouveau a démarré. Une copie est gardée",
   "toast.fullscreenDenied": "Le navigateur a refusé le plein écran",
   "toast.fullscreenUnavailable": "Plein écran indisponible",
   "toast.wakeOn": "L'écran restera allumé",

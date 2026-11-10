@@ -171,6 +171,7 @@ export default {
   "toast.imported": "आयात हुआ",
   "toast.importFailed": "यह फ़ाइल उपयुक्त नहीं",
   "toast.storageFull": "सहेजा नहीं जा सका: स्टोरेज भरा है",
+  "toast.recovered": "डेटा फ़ाइल खराब थी, नई शुरू की गई। एक प्रति रखी गई है",
   "toast.fullscreenDenied": "ब्राउज़र ने पूर्ण स्क्रीन नहीं दी",
   "toast.fullscreenUnavailable": "पूर्ण स्क्रीन उपलब्ध नहीं",
   "toast.wakeOn": "स्क्रीन चालू रहेगी",

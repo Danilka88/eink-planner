@@ -171,6 +171,7 @@ export default {
   "toast.imported": "已导入",
   "toast.importFailed": "这个文件不适用",
   "toast.storageFull": "无法保存：存储已满",
+  "toast.recovered": "数据文件已损坏，已重新开始。副本已保留",
   "toast.fullscreenDenied": "浏览器拒绝了全屏",
   "toast.fullscreenUnavailable": "全屏不可用",
   "toast.wakeOn": "屏幕将保持常亮",
