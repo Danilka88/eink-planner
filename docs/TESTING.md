@@ -16,9 +16,37 @@ npm test
 - миграция v1 → v2;
 - склонения во всех 8 языках и совпадение набора ключей между словарями;
 - формат времени 12/24 ч;
-- версия совпадает с `package.json`.
+- версия совпадает с `package.json`;
+- все named-импорты существуют в целевых модулях (опечатка ловится без браузера);
+- у каждого модуля `js/ui/*` есть потребитель;
+- `SHELL` в `sw.js` покрывает все импорты и ресурсы `index.html` — иначе офлайн
+  сломается ровно в самолёте.
 
-Тесты гоняются в Node без браузера: ядро не трогает DOM.
+Тесты гоняются в Node без браузера: ядро не трогает DOM, а тесты структуры
+читают файлы как текст.
+
+## Линтер
+
+```bash
+npm run lint
+```
+
+ESLint 9 с браузерными глобальными: `no-undef`, `no-unused-vars`, `no-var`,
+`eqeqeq`, `prefer-const`, `no-shadow`. `node_modules` в рантайме нет — это
+только dev-зависимость.
+
+## code-gate
+
+```bash
+CG="$HOME/Documents/opencode/code-gate/scripts/cg.py"
+PATH="$PWD/node_modules/.bin:$PATH" python3 "$CG" detect --path .   # что доступно
+PATH="$PWD/node_modules/.bin:$PATH" python3 "$CG" sweep  --path .   # вердикт
+PATH="$PWD/node_modules/.bin:$PATH" python3 "$CG" ratchet --path .  # запрет регресса
+```
+
+Вердикт `CLEAN` — открытых находок нет. `missing` у анализатора — это не
+`pass`: отсутствие проверки попадает в отчёт отдельной строкой. Отчёты лежат
+в `.code-gate/` и в git не попадают.
 
 ## Проверка в браузере
 

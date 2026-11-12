@@ -61,7 +61,8 @@ python3 -m http.server 8080
 ```
 index.html            मार्कअप, SEO, टेम्पलेट, CSP
 styles.css            1-बिट थीम, ग्रिड, e-ink नियम
-js/app.js             DOM, इवेंट, रेंडर, संपादक, सेटिंग्स
+js/app.js             एंट्री पॉइंट: मॉड्यूल, init()
+js/ui/*.js            बोर्ड, पैनल, संपादक, इवेंट, अपडेट
 js/core/schedule.js   खिड़कियाँ, दोहराव, बकाया (शुद्ध)
 js/core/state.js      मॉडल, माइग्रेशन, localStorage
 js/core/i18n.js       8 भाषाएँ, Intl बहुवचन, तारीख़ें, 12/24 घंटे

@@ -23,3 +23,7 @@ design/inputs.example.json
 design/seo/
 design/jsonld/
 design/og/
+
+# code-gate: конфиг и baseline храним, отчёты — локальные
+.code-gate/reports/
+.code-gate/ledger.jsonl

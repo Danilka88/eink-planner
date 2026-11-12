@@ -102,7 +102,17 @@ export function formatDayFull(date) {
   return formatDate(date, { day: "numeric", month: "long", weekday: "short" });
 }
 
-export function formatTime(date) {
+/* В арабском (RTL) строка «07:00–10:30» без изоляции разворачивается
+   зеркально: браузер считает её нейтральной. LRI…PDI задают фрагменту
+   собственную направленность, и время читается слева направо. */
+const LRI = "\u2066";
+const PDI = "\u2069";
+
+function bidiSafe(text) {
+  return RTL_LOCALES.indexOf(getLocale()) === -1 ? text : LRI + text + PDI;
+}
+
+function timeText(date) {
   return new Intl.DateTimeFormat(current, {
     hour: hour12 ? "numeric" : "2-digit",
     minute: "2-digit",
@@ -111,14 +121,24 @@ export function formatTime(date) {
 }
 
 /* "06:30" → "06:30" или "6:30 AM" в зависимости от языка и настройки. */
-export function formatClock(value) {
+function clockText(value) {
   const parts = String(value || "00:00").split(":");
   const date = new Date(2000, 0, 1, Number(parts[0]) || 0, Number(parts[1]) || 0);
-  return formatTime(date);
+  return timeText(date);
 }
 
+export function formatTime(date) {
+  return bidiSafe(timeText(date));
+}
+
+export function formatClock(value) {
+  return bidiSafe(clockText(value));
+}
+
+/* Окно изолируется целиком: два отдельных времени в RTL всё равно
+   поменялись бы местами вокруг тире. */
 export function formatWindow(start, end) {
-  return formatClock(start) + "–" + formatClock(end);
+  return bidiSafe(clockText(start) + "–" + clockText(end));
 }
 
 export function dayShortNames() {

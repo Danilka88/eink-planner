@@ -23,11 +23,17 @@
 ## Команды
 
 ```bash
-npm test                              # 25 тестов, node --test
+npm test                              # 33 теста, node --test
+npm run lint                          # eslint: no-undef, no-unused-vars, no-var
 python3 -m http.server 8080           # локально: http://127.0.0.1:8080
 GATE="$HOME/Documents/OpenCode/design-gate"
 python3 "$GATE/scripts/design_audit.py" .                    # статический аудит
 python3 "$GATE/scripts/design_audit.py" . --live URL         # живой аудит
+
+# code-gate: детерминированный вердикт по качеству кода
+CG="$HOME/Documents/opencode/code-gate/scripts/cg.py"
+PATH="$PWD/node_modules/.bin:$PATH" python3 "$CG" sweep --path .
+PATH="$PWD/node_modules/.bin:$PATH" python3 "$CG" ratchet --path .
 ```
 
 Открывать `index.html` двойным щелчком нельзя: ES-модули на `file://` не
@@ -58,8 +64,10 @@ python3 "$GATE/scripts/design_audit.py" . --live URL         # живой ауд
    описать в `docs/DATA-MODEL.md` и `CHANGELOG.md`.
 4. **Любая правка** → поднять `APP_VERSION` в `js/core/version.js` **и**
    `version` в `package.json` (тест сверяет). Схема: `MAJOR.MINOR.PATCH`.
+   Если менялся `package.json` — обновить и `package-lock.json` (`npm i`).
 5. **Изменил файлы оболочки** (`index.html`, `styles.css`, `js/**`) → поднять
-   `CACHE` в `sw.js`. Планшет обновится сам: service worker заметит новый кэш и
+   `CACHE` в `sw.js`. Новый модуль в `js/` → добавить его в `SHELL` в `sw.js`;
+   `tests/shell.test.js` падает, если импорт не попал в офлайн-кэш. Планшет обновится сам: service worker заметит новый кэш и
    перезагрузит страницу в безопасный момент (см. `docs/ARCHITECTURE.md`).
 6. **Новый ресурс** (иконка, шрифт, картинка) → запись в `THIRD-PARTY.md` с
    лицензией. GPL/AGPL в проект не берём.
@@ -68,6 +76,7 @@ python3 "$GATE/scripts/design_audit.py" . --live URL         # живой ауд
 ## Чек-лист перед коммитом
 
 - [ ] `npm test` — зелено.
+- [ ] `npm run lint` — без ошибок.
 - [ ] `node --check js/app.js` — без ошибок.
 - [ ] Доска на 536×724 и 375×812: нет прокрутки, плитки не обрезаны.
 - [ ] Обе темы: светлая и тёмная.
@@ -80,6 +89,8 @@ python3 "$GATE/scripts/design_audit.py" . --live URL         # живой ауд
 
 - Ванильный JS, ES-модули, никаких фреймворков и сборщиков.
 - Логика, которую можно протестировать, — в `js/core/`, без обращения к DOM.
+- Интерфейс — в `js/ui/` по ответственности (см. `docs/ARCHITECTURE.md`), не
+  больше 400 строк на файл. Общее изменяемое состояние — только в `store.js`.
 - Строки интерфейса — только через `t("ключ")`, никогда литералом в разметке.
 - Комментарии — по-русски, по делу; объясняют «почему», а не «что».
 - Именование: `camelCase` для переменных, `kebab-case` для файлов, ключи

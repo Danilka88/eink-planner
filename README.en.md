@@ -63,7 +63,8 @@ app bug. Settings → About shows the current state.
 ```
 index.html            markup, SEO, templates, CSP
 styles.css            1-bit theme, grid, e-ink rules
-js/app.js             DOM, events, render, editor, settings
+js/app.js             entry point: module wiring, init()
+js/ui/*.js            board, panels, editor, events, updates
 js/core/schedule.js   windows, repeat, overdue, history (pure)
 js/core/state.js      model, migrations, localStorage
 js/core/i18n.js       8 locales, Intl plurals, dates, 12/24 h

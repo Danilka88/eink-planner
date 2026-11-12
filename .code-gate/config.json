@@ -1,0 +1,20 @@
+{
+ "adapters": {
+  "disable": [],
+  "timeout": 180
+ },
+ "budget": {
+  "rounds": 3
+ },
+ "exclude": [
+  "webmcp.js"
+ ],
+ "ratchet": {
+  "allow_growth": []
+ },
+ "rules": {
+  "disable": [],
+  "thresholds": {}
+ },
+ "version": 1
+}

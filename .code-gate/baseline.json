@@ -1,0 +1,19 @@
+{
+ "accepted": {},
+ "configs": {
+  "eslint.config.js": "756040c7fa2cc48aa1da2e096b96126fb4d23b97ba463d30721271227adde8f3"
+ },
+ "counts": {
+  "DUP-CODE": 0,
+  "STRUCT-FILE-SIZE": 0
+ },
+ "coverage": null,
+ "created": "2026-11-12T21:18:39Z",
+ "suppressions": [],
+ "tests": {
+  "assertions": 89,
+  "count": 32
+ },
+ "updated": "2026-11-12T21:36:04Z",
+ "version": 1
+}

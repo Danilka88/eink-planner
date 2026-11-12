@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
-  detectLocale, dictionaryKeys, formatClock, LOCALES, RTL_LOCALES, setLocale, t
+  detectLocale, dictionaryKeys, formatClock, formatWindow, LOCALES, RTL_LOCALES, setLocale, t
 } from "../js/core/i18n.js";
 
 test("русские склонения: 1 день, 2 дня, 5 дней", function () {
@@ -73,4 +73,14 @@ test("формат времени 24 и 12 часов", function () {
 
 test("detectLocale не падает без navigator", function () {
   assert.equal(typeof detectLocale(), "string");
+});
+
+test("в арабском время изолировано от bidi-разворота", function () {
+  setLocale("ar", "24");
+  const window = formatWindow("07:00", "10:30");
+  assert.equal(window, "\u206607:00\u201310:30\u2069");
+  assert.ok(window.startsWith("\u2066"), "нет LRI");
+  assert.ok(window.endsWith("\u2069"), "нет PDI");
+  setLocale("ru", "24");
+  assert.equal(formatWindow("07:00", "10:30"), "07:00–10:30");
 });

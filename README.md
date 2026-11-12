@@ -65,7 +65,8 @@ python3 -m http.server 8080
 ```
 index.html            разметка, SEO, шаблоны, CSP
 styles.css            1-битная тема, сетка, e-ink правила
-js/app.js             DOM, события, рендер, редактор, настройки
+js/app.js             точка входа: сборка модулей, init()
+js/ui/*.js            доска, панели, редактор, события, обновление
 js/core/schedule.js   окна, повтор, долги, история (чистые функции)
 js/core/state.js      модель, миграции, localStorage
 js/core/i18n.js       8 языков, Intl-склонения, 12/24 ч

@@ -63,7 +63,8 @@ falha do app. Ajustes → Sobre mostra o estado atual.
 ```
 index.html            marcação, SEO, modelos, CSP
 styles.css            tema 1 bit, grade, regras e-ink
-js/app.js             DOM, eventos, render, editor, ajustes
+js/app.js             ponto de entrada: módulos, init()
+js/ui/*.js            quadro, painéis, editor, eventos, atualização
 js/core/schedule.js   janelas, repetição, atrasos (puro)
 js/core/state.js      modelo, migrações, localStorage
 js/core/i18n.js       8 idiomas, plurais Intl, datas, 12/24 h

@@ -64,7 +64,8 @@ navigateur, pas un défaut de l'app. Réglages → À propos affiche l'état.
 ```
 index.html            balisage, SEO, modèles, CSP
 styles.css            thème 1 bit, grille, règles e-ink
-js/app.js             DOM, événements, rendu, éditeur, réglages
+js/app.js             point d'entrée : modules, init()
+js/ui/*.js            tableau, panneaux, éditeur, événements, mises à jour
 js/core/schedule.js   plages, répétition, retards (pur)
 js/core/state.js      modèle, migrations, localStorage
 js/core/i18n.js       8 langues, pluriels Intl, dates, 12/24 h

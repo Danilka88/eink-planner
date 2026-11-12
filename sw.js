@@ -1,11 +1,24 @@
-/* РИТУАЛ — offline app shell. Bump CACHE when any shell file changes. */
-const CACHE = "ritual-shell-1.4.3";
+/* Такт — offline app shell. Bump CACHE when any shell file changes. */
+const CACHE = "ritual-shell-1.5.0";
 const SHELL = [
   "./",
   "./index.html",
   "./styles.css",
   "./js/theme-boot.js",
   "./js/app.js",
+  "./js/ui/board.js",
+  "./js/ui/data.js",
+  "./js/ui/dom.js",
+  "./js/ui/editor.js",
+  "./js/ui/events.js",
+  "./js/ui/feedback.js",
+  "./js/ui/marks.js",
+  "./js/ui/panel.js",
+  "./js/ui/screen.js",
+  "./js/ui/settings.js",
+  "./js/ui/shell.js",
+  "./js/ui/store.js",
+  "./js/ui/update.js",
   "./js/core/i18n.js",
   "./js/core/dict/ru.js",
   "./js/core/dict/en.js",

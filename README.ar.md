@@ -62,7 +62,8 @@ python3 -m http.server 8080
 ```
 index.html            الترميز، SEO، القوالب، CSP
 styles.css            سمة 1-بت، الشبكة، قواعد e-ink
-js/app.js             DOM، الأحداث، العرض، المحرر، الإعدادات
+js/app.js             نقطة الدخول: تجميع الوحدات، init()
+js/ui/*.js            اللوحة، الألواح، المحرر، الأحداث، التحديث
 js/core/schedule.js   النوافذ، التكرار، المتأخرات (دوال نقية)
 js/core/state.js      النموذج، الترحيل، localStorage
 js/core/i18n.js       8 لغات، صيغ الجمع، التواريخ، 12/24 ساعة

@@ -60,7 +60,8 @@ python3 -m http.server 8080
 ```
 index.html            标记、SEO、模板、CSP
 styles.css            1 位主题、网格、e-ink 规则
-js/app.js             DOM、事件、渲染、编辑器、设置
+js/app.js             入口：组装模块，init()
+js/ui/*.js            看板、面板、编辑器、事件、更新
 js/core/schedule.js   时间窗口、重复、逾期（纯函数）
 js/core/state.js      模型、迁移、localStorage
 js/core/i18n.js       8 种语言、Intl 复数、日期、12/24 小时

@@ -64,7 +64,8 @@ navegador, no un fallo de la app. Ajustes → Acerca de muestra el estado.
 ```
 index.html            marcado, SEO, plantillas, CSP
 styles.css            tema 1 bit, rejilla, reglas e-ink
-js/app.js             DOM, eventos, render, editor, ajustes
+js/app.js             punto de entrada: módulos, init()
+js/ui/*.js            tablero, paneles, editor, eventos, actualización
 js/core/schedule.js   franjas, repetición, pendientes (puro)
 js/core/state.js      modelo, migraciones, localStorage
 js/core/i18n.js       8 idiomas, plurales Intl, fechas, 12/24 h

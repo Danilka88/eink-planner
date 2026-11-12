@@ -1,0 +1,23 @@
+# gitleaks: что не является секретом в этом репозитории.
+#
+# design/ — артефакты design-gate. Они в .gitignore и не публикуются как код;
+# ключ IndexNow (f3773c4d…) публичен по устройству сервиса: он лежит открытым
+# файлом на сайте, чтобы поисковики могли подтвердить владение доменом.
+# Настоящих секретов в проекте нет и быть не может: приложение офлайн.
+
+title = "Такт"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Публичный ключ IndexNow и сгенерированные артефакты design-gate"
+paths = [
+  '''design/design-sheet\.json''',
+  '''design/design-sheet\.lock''',
+  '''design/indexnow\.json''',
+  '''design/inputs\.local\.json'''
+]
+regexes = [
+  '''f3773c4d10cc90c15cb2aa4f09fb4292'''
+]
